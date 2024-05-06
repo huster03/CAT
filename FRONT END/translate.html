@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="translate.css"/>
+    <script src="translate.js" defer></script>
+    <title>翻译界面</title>
+  </head>
+
+  <body>
+    <!--用户栏-->
+    <div class="bar_user">
+      <div class="bar_left">
+        我的文档
+      </div>
+      <div class="bar_right">
+        UserName
+        <div><button>头像</button></div>&ensp;
+        <div><button>帮助</button></div>
+      </div>
+    </div>
+    
+    <!--工具栏-->
+    <div class="bar_tool">
+      <div class="bar_left">
+        <div><button>保存</button></div>&ensp;
+        <div><button>撤回</button></div>&ensp;
+        <div><button>恢复</button></div>&ensp;
+        |&ensp;
+        <div><button>分割</button></div>&ensp;
+        <div><button>合并</button></div>&ensp;
+        |&ensp;
+        <div><button>上段</button></div>&ensp;
+        <div><button>下段</button></div>
+      </div>
+      <div class="bar_right">
+        <div><button>预览</button></div>&ensp;
+        <div><button>导出</button></div>&ensp;
+        <div><button class="long tech">术语库</button></div>&ensp;
+        <div><button class="long memo">记忆库</button></div>
+      </div>
+    </div>
+
+    <div class="main">
+
+      <!--辅助翻译栏-->
+      <div class="translate">
+        <div class="translate_box">
+          <div class="scroll">&emsp;</div>
+          <div class="source">
+            <span class="translated">Translated</span>
+            <span class="translating">Translating</span>
+            <span class="untranslated">Untranslated</span>
+          </div>
+          <div class="divider">&emsp;</div>
+          <div class="target">
+            <span class="translated">已翻译</span>
+            <span class="translating">正在翻译</span>
+            <span class="untranslated">未翻译</span>
+          </div>
+        </div>
+      </div>
+
+      <!--词典栏-->
+      <div class="main_right">
+        <h3>词典</h3>
+        <div><button class="search">搜索</button></div>
+        <div><button class="search">对应翻译</button></div>
+        <div><button class="result">词典搜索结果</button></div>
+        <div><button class="long tech">保存到术语库</button></div>&ensp;
+        <div><button class="long memo">保存到记忆库</button></div>
+      </div>
+    </div>
+  </body>
+</html>

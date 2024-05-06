@@ -87,6 +87,18 @@ body
     display: inline-block;
 }
 
+.result
+{
+    text-align: center;
+
+    width: 350px;
+    height: 400px;
+
+    background-color: #FFF;
+    border: solid #9A9A9A;
+    border-radius: 5px 5px 0 0;
+}
+
 /*搜索栏标题*/
 h3
 {
@@ -223,14 +235,6 @@ button:active
     text-align: left;
 
     width: 350px;
-}
-
-.result
-{
-    text-align: center;
-
-    width: 350px;
-    height: 400px;
 }
 
 .tech:hover

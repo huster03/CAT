@@ -66,7 +66,25 @@
         <h3>词典</h3>
         <div><button class="search">搜索</button></div>
         <div><button class="search">对应翻译</button></div>
-        <div><button class="result">词典搜索结果</button></div>
+
+        <!--搞点JavaScript :)-->
+        <div class="result">
+          <h3>猜数</h3>
+          <p>1 to 100, high or low.</p>
+
+          <div class="form">
+            <label for="guessField">Enter a guess: </label>
+            <input type="number" min="1" max="100" required id="guessField" class="guessField">
+            <input type="submit" value="Submit guess" class="guessSubmit">
+          </div>
+
+          <div class="resultParas">
+            <p class="guesses"></p>
+            <p class="lastResult"></p>
+            <p class="lowOrHi"></p>
+          </div>
+        </div>
+        
         <div><button class="long tech">保存到术语库</button></div>&ensp;
         <div><button class="long memo">保存到记忆库</button></div>
       </div>

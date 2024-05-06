@@ -1,0 +1,262 @@
+body
+{
+    background-color: #DBDBDB;
+}
+
+/*用户栏*/
+.bar_user
+{
+    box-sizing: border-box;
+
+    color: #fff;
+    font-size: 28px;;
+
+    line-height: 60px;
+    width: 1920px;
+    height: 60px;
+    padding-left: 200px;
+    padding-right: 200px;
+    background: linear-gradient(0.25turn, #F08502, 70%, #FACD18);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, .2);
+}
+
+/*工具栏*/
+.bar_tool
+{
+    box-sizing: border-box;
+
+    color: #4f4f4f;
+
+    line-height: 60px;
+    width: 1870px;
+    height: 60px;
+    padding-left: 175px;
+    padding-right: 175px;
+    margin-left: 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .2);
+}
+
+.bar_left
+{
+    display: inline-block;
+}
+
+.bar_left > div
+{
+    display: inline-block;
+}
+
+.bar_right
+{
+    float: right;
+}
+
+.bar_right > div
+{
+    display: inline-block;
+}
+
+/*主页面*/
+.main
+{
+    width: 1520px;
+    height: 960px;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+/*搜索栏*/
+.main_right
+{
+    float: right;
+    box-sizing: border-box;
+
+    width: 400px;
+    height: 880px;
+    padding-top: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+    background-color: #EFEFEF;
+    border: solid #BEBEBE;
+}
+
+.main_right > div
+{
+    display: inline-block;
+}
+
+/*搜索栏标题*/
+h3
+{
+    font-size: 42px;
+    color: #F08502;
+
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+/*辅助翻译栏*/
+.translate
+{
+    display: inline-block;
+    box-sizing: border-box;
+
+    width: 1095px;
+    height: 960px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top:25px;
+    background-color: #EFEFEF;
+    border: solid #BEBEBE;
+}
+
+.translate_box
+{
+    display: inline-block;
+    box-sizing: border-box;
+
+    width: 1045px;
+    height: 935px;
+    padding-left: 25px;
+    padding-right: 25px;
+    
+    background-color: #FFF;
+    border: solid #9A9A9A;
+    border-radius: 5px 5px 0 0;
+}
+
+.translate_box > div
+{
+    display: inline-block;
+}
+
+.scroll
+{
+    width: 6px;
+    height: 800px;
+    background-color: #F08502;
+    border-radius: 5px;
+}
+
+.source
+{
+    box-sizing: border-box;
+
+    font-size: 28px;
+    font-family: 'Times New Roman', Times, serif;
+    
+    width: 480px;
+    height: 935px;
+    padding: 25px;
+}
+
+.translated
+{
+    color: #4f4f4f;
+}
+
+.translating
+{
+    color: #000;
+}
+
+.untranslated
+{
+    color: #DBDBDB;
+}
+
+.divider
+{
+    width: 1px;
+    height:885px;   /*不知道为什么，但这样就不会出头*/
+    border-left: dashed #9A9A9A;
+    margin-top: 0px;
+}
+
+.target
+{
+    box-sizing: border-box;
+
+    font-size: 28px;
+    
+    width: 480px;
+    height: 935px;
+    padding: 25px;
+}
+
+/*按钮，以及类似按钮的模块*/
+button
+{
+    font-size: 16px;
+    color: #4f4f4f;
+    text-align: center;
+
+    width: 48px;
+    height: 32px;
+    margin-bottom: 8px;
+    background-color: #fff;
+    border: solid #9A9A9A;
+    border-radius: 5px;
+}
+
+button:hover
+{
+    background-color: #EFEFEF;
+    border: solid #4f4f4f
+}
+
+button:active
+{
+    background-color: #DBDBDB;
+    border: solid #000;
+}
+
+.long
+{
+    width: 160px;
+}
+
+.search
+{
+    text-align: left;
+
+    width: 350px;
+}
+
+.result
+{
+    text-align: center;
+
+    width: 350px;
+    height: 400px;
+}
+
+.tech:hover
+{
+    color: #FFF;
+    
+    background-color: #C20000;
+}
+
+.tech:active
+{
+    color: #FFF;
+    
+    background-color: #8F0000;
+}
+
+.memo:hover
+{
+    color: #FFF;
+    
+    background-color: #FACD18;
+}
+
+.memo:active
+{
+    color: #FFF;
+    
+    background-color: #E0AC00;
+}

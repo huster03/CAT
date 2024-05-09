@@ -7,6 +7,9 @@ def home(request):
 def login(request):
     return render(request, 'login.html')
 
+def user_register(request):
+    return render(request,'user_register.html')
+
 def user_project(request):
     return render(request, 'user_project.html')
 

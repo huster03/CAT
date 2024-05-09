@@ -21,4 +21,10 @@ urlpatterns = [
     path('home/',views.home),
     path('login/',views.login),
     path('uesr/add/',views.user_add),
+    path('user/project/list/',views.user_project_list),
+    path('user/project/',views.user_project),
+    path('user/memory bank/list/',views.user_memory_bank_list),
+    path('user/memory bank/',views.user_memory_bank),
+    path('user/term bank/list/',views.user_term_bank_list),
+    path('user/term bank/',views.user_term_bank),
 ]

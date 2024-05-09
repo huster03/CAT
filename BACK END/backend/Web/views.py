@@ -7,12 +7,6 @@ def home(request):
 def login(request):
     return render(request, 'login.html')
 
-def user_add(request):
-    return render(request, 'user_add.html')
-
-def user_list(request):
-    return render(request, 'user_list.html')
-
 def user_project(request):
     return render(request, 'user_project.html')
 

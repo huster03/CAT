@@ -20,7 +20,6 @@ from Web import views
 urlpatterns = [
     path('home/',views.home),
     path('login/',views.login),
-    path('uesr/add/',views.user_add),
     path('user/project/list/',views.user_project_list),
     path('user/project/',views.user_project),
     path('user/memory bank/list/',views.user_memory_bank_list),

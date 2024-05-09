@@ -10,6 +10,8 @@ const guessField = document.querySelector('.guessField');
 let guessCount = 1;
 let resetButton;
 
+guessField.focus();
+
 function checkGuess()
 {
     const userGuess = Number(guessField.value);
@@ -41,9 +43,9 @@ function checkGuess()
         {lowOrHi.textContent = 'Last guess was too high!';}
     }
 
-        guessCount++;
-        guessField.value = '';
-        guessField.focus();
+    guessCount++;
+    guessField.value = '';
+    guessField.focus();
 }
 
 guessSubmit.addEventListener('click', checkGuess);

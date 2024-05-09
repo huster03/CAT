@@ -1,0 +1,98 @@
+/*背景板*/
+body
+{
+    background-color: #DBDBDB;
+}
+
+/*用户栏*/
+.user
+{
+    box-sizing: border-box;
+
+    color: #fff;
+    font-size: 28px;;
+
+    line-height: 60px;
+    width: 100%;
+    min-width: 1200px;
+    height: 60px;
+    padding-left: 100px;
+    padding-right: 100px;
+
+    background: linear-gradient(0.25turn, #F08502, 70%, #FACD18);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, .2);
+}
+
+/*工具栏*/
+.tool
+{
+    box-sizing: border-box;
+
+    color: #4f4f4f;
+
+    line-height: 60px;
+    width: calc(100% - 50px);
+    min-width: 1150px;
+    height: 60px;
+    padding-left: 75px;
+    padding-right: 75px;
+    margin-left: 25px;
+
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .2);
+}
+
+.right
+{
+    float: right;
+}
+
+.left,
+.left > div,
+.right > div
+{
+    display: inline-block;
+}
+
+.tool > .left
+{
+    width: calc((100vw - 200px) * 0.7 - 25px);
+}
+
+/*主页框，分为左右两侧*/
+.main
+{
+    min-width: 1000px;
+    height: 100%;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.main > .left
+{
+    box-sizing: border-box;
+
+    width: 70%;
+    min-width: 700px;
+    height: 960px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top:25px;
+    background-color: #EFEFEF;
+    border: solid #BEBEBE;
+}
+
+
+.main > .right
+{
+    box-sizing: border-box;
+
+    width: calc(30% - 25px);
+    height: 880px;
+    padding-top: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+    background-color: #EFEFEF;
+    border: solid #BEBEBE;
+}

@@ -1,0 +1,13 @@
+.translate_box
+{
+    display: inline-block;
+    box-sizing: border-box;
+
+    height: 935px;
+    padding-left: 25px;
+    padding-right: 25px;
+    
+    background-color: #FFF;
+    border: solid #9A9A9A;
+    border-radius: 5px;
+}

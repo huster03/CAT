@@ -3,17 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="translate.css"/>
+    <link rel="stylesheet" href="CSS/general.css"/>
+    <link rel="stylesheet" href="CSS/button.css"/>
+    <link rel="stylesheet" href="CSS/translate.css"/>
     <script src="translate.js" defer></script>
     <title>翻译界面</title>
   </head>
 
   <body>
     <!--用户栏-->
-    <div class="bar_user">
-      <div class="bar_left">
+    <div class="user">
+      <div class="left">
         我的文档
       </div>
-      <div class="bar_right">
+      <div class="right">
         UserName
         <div><button>头像</button></div>&ensp;
         <div><button>帮助</button></div>
@@ -21,21 +24,25 @@
     </div>
     
     <!--工具栏-->
-    <div class="bar_tool">
-      <div class="bar_left">
-        <div><button>保存</button></div>&ensp;
-        <div><button>撤回</button></div>&ensp;
-        <div><button>恢复</button></div>&ensp;
-        |&ensp;
-        <div><button>分割</button></div>&ensp;
-        <div><button>合并</button></div>&ensp;
-        |&ensp;
-        <div><button>上段</button></div>&ensp;
-        <div><button>下段</button></div>
+    <div class="tool">
+      <div class="left">
+        <div class="left">
+          <div><button>保存</button></div>&ensp;
+          <div><button>撤回</button></div>&ensp;
+          <div><button>恢复</button></div>&ensp;
+          |&ensp;
+          <div><button>分割</button></div>&ensp;
+          <div><button>合并</button></div>&ensp;
+          |&ensp;
+          <div><button>上段</button></div>&ensp;
+          <div><button>下段</button></div>
+        </div>
+        <div class="right">
+          <div><button>预览</button></div>&ensp;
+          <div><button>导出</button></div>&ensp;
+        </div>
       </div>
-      <div class="bar_right">
-        <div><button>预览</button></div>&ensp;
-        <div><button>导出</button></div>&ensp;
+      <div class="right">
         <div><button class="long tech">术语库</button></div>&ensp;
         <div><button class="long memo">记忆库</button></div>
       </div>
@@ -44,7 +51,7 @@
     <div class="main">
 
       <!--辅助翻译栏-->
-      <div class="translate">
+      <div class="left">
         <div class="translate_box">
           <div class="scroll">&emsp;</div>
           <div class="source">
@@ -62,7 +69,7 @@
       </div>
 
       <!--词典栏-->
-      <div class="main_right">
+      <div class="right">
         <h3>词典</h3>
         <div><button class="search">搜索</button></div>
         <div><button class="search">对应翻译</button></div>
@@ -71,13 +78,11 @@
         <div class="result">
           <h3>猜数</h3>
           <p>1 to 100, high or low.</p>
-
           <div class="form">
             <label for="guessField">Enter a guess: </label>
             <input type="number" min="1" max="100" required id="guessField" class="guessField">
             <input type="submit" value="Submit guess" class="guessSubmit">
           </div>
-
           <div class="resultParas">
             <p class="guesses"></p>
             <p class="lastResult"></p>

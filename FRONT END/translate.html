@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="translate.css"/>
     <link rel="stylesheet" href="CSS/general.css"/>
     <link rel="stylesheet" href="CSS/button.css"/>
     <link rel="stylesheet" href="CSS/translate.css"/>
@@ -13,85 +12,67 @@
   <body>
     <!--用户栏-->
     <div class="user">
-      <div class="left">
-        我的文档
-      </div>
-      <div class="right">
-        UserName
-        <div><button>头像</button></div>&ensp;
-        <div><button>帮助</button></div>
+      <div class="in">
+        <div class="left">
+          我的文档
+        </div>
+        <div class="right">
+          UserName
+          <div><button>头像</button></div>&ensp;
+          <div><button>帮助</button></div>
+        </div>
       </div>
     </div>
     
     <!--工具栏-->
     <div class="tool">
-      <div class="left">
+      <div class="in">
         <div class="left">
-          <div><button>保存</button></div>&ensp;
-          <div><button>撤回</button></div>&ensp;
-          <div><button>恢复</button></div>&ensp;
-          |&ensp;
-          <div><button>分割</button></div>&ensp;
-          <div><button>合并</button></div>&ensp;
-          |&ensp;
-          <div><button>上段</button></div>&ensp;
-          <div><button>下段</button></div>
+          <div class="left">
+            <div><button>保存</button></div>&ensp;
+            <div><button>撤回</button></div>&ensp;
+            <div><button>恢复</button></div>&ensp;
+            |&ensp;
+            <div><button>分割</button></div>&ensp;
+            <div><button>合并</button></div>&ensp;
+            |&ensp;
+            <div><button>上段</button></div>&ensp;
+            <div><button>下段</button></div>
+          </div>
+          <div class="right">
+            <div><button>预览</button></div>&ensp;
+            <div><button>导出</button></div>
+          </div>
         </div>
         <div class="right">
-          <div><button>预览</button></div>&ensp;
-          <div><button>导出</button></div>&ensp;
+          <div><button class="bank tech">术语库</button></div>&ensp;
+          <div><button class="bank memo">记忆库</button></div>
         </div>
-      </div>
-      <div class="right">
-        <div><button class="long tech">术语库</button></div>&ensp;
-        <div><button class="long memo">记忆库</button></div>
       </div>
     </div>
 
     <div class="main">
-
-      <!--辅助翻译栏-->
-      <div class="left">
-        <div class="translate_box">
-          <div class="scroll">&emsp;</div>
-          <div class="source">
-            <span class="translated">Translated</span>
-            <span class="translating">Translating</span>
-            <span class="untranslated">Untranslated</span>
-          </div>
-          <div class="divider">&emsp;</div>
-          <div class="target">
-            <span class="translated">已翻译</span>
-            <span class="translating">正在翻译</span>
-            <span class="untranslated">未翻译</span>
+      <div class="in">
+        <!--辅助翻译栏-->
+        <div class="left">
+         <div class="box">
+            翻译内容...
           </div>
         </div>
-      </div>
 
-      <!--词典栏-->
-      <div class="right">
-        <h3>词典</h3>
-        <div><button class="search">搜索</button></div>
-        <div><button class="search">对应翻译</button></div>
+        <!--词典栏-->
+       <div class="right">
+          <h3>词典</h3>
+         <div><button class="long">搜索</button></div>
+         <div><button class="long">对应翻译</button></div>
 
-        <!--搞点JavaScript :)-->
-        <div class="result">
-          <h3>猜数</h3>
-          <p>1 to 100, high or low.</p>
-          <div class="form">
-            <label for="guessField">Enter a guess: </label>
-            <input type="number" min="1" max="100" required id="guessField" class="guessField">
-            <input type="submit" value="Submit guess" class="guessSubmit">
+          <div class="long result">
+            搜索结果...
           </div>
-          <div class="resultParas">
-            <p class="guesses"></p>
-            <p class="lastResult"></p>
-            <p class="lowOrHi"></p>
-          </div>
-        </div>
         
-        <div><button class="long tech">保存到术语库</button></div>&ensp;
-        <div><button class="long memo">保存到记忆库</button></div>
+          <div><button class="mid tech">保存到术语库</button></div>&ensp;
+          <div><button class="mid memo">保存到记忆库</button></div>
+        </div>
       </div>
     </div>
   </body>

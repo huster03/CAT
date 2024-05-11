@@ -1,12 +1,13 @@
 button
 {
-    font-size: 16px;
+    font-size: 14px;
     color: #4f4f4f;
     text-align: center;
 
     width: 48px;
-    height: 32px;
+    height: 28px;
     margin-bottom: 8px;
+
     background-color: #fff;
     border: solid #9A9A9A;
     border-radius: 5px;
@@ -24,18 +25,33 @@ button:active
     border: solid #000;
 }
 
-.long
+/*记忆库按钮*/
+.bank
 {
-    width: calc(((100vw - 200px) * 0.3 - 25px - 40px) / 2);
+    width: calc(((100vw - 200px) * 0.3 - 25px - 25px) / 2);
+    min-width: calc(((1200px - 200px) * 0.3 - 25px - 25px) / 2);
+    max-width: calc(((3840px - 200px) * 0.3 - 25px - 25px) / 2);
 }
 
-.search
+/*长按钮，用于右栏中的搜索框*/
+.long
 {
     text-align: left;
 
-    width: 350px;
+    width: calc((100vw - 200px) * 0.3 - 25px - 50px);
+    min-width: calc((1200px - 200px) * 0.3 - 25px - 50px);
+    max-width: calc((3840px - 200px) * 0.3 - 25px - 50px);
 }
 
+/*中等长度的按钮，用于保存到库*/
+.mid
+{
+    width: calc(((100vw - 200px) * 0.3 - 25px - 50px - 25px) / 2);
+    min-width: calc(((1200px - 200px) * 0.3 - 25px - 50px - 25px) / 2);
+    max-width: calc(((3840px - 200px) * 0.3 - 25px - 50px - 25px) / 2);
+}
+
+/*术语库和记忆库按钮*/
 .tech:hover
 {
     color: #FFF;

@@ -1,12 +1,15 @@
-.translate_box
+/*翻译结果框*/
+.result
 {
-    display: inline-block;
     box-sizing: border-box;
 
-    height: 935px;
-    padding-left: 25px;
-    padding-right: 25px;
-    
+    text-align: center;
+
+    height: calc(100% - 25px - (28px + 8px) * 4 - 50px);
+    min-height: calc(675px - 200px - 25px - 25px - (28px + 8px) * 4 - 50px);
+    max-height: calc(2160px - 200px - 25px - 25px - (28px + 8px) * 4 - 50px);
+    margin-bottom: 8px;
+
     background-color: #FFF;
     border: solid #9A9A9A;
     border-radius: 5px;

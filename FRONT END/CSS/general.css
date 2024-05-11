@@ -142,6 +142,7 @@ body
     height: calc(100% - 25px);
     min-height: calc(675px - 200px - 25px - 25px);
     padding-left: 25px;
+    padding-top: 8px;
     
     background-color: #FFF;
     border: solid #9A9A9A;
@@ -161,6 +162,7 @@ body
     border: solid #BEBEBE;
 }
 
+/*搜索栏标题*/
 h3
 {
     font-size: 28px;

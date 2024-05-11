@@ -1,3 +1,8 @@
+*
+{
+    box-sizing: border-box;
+}
+
 button
 {
     font-size: 14px;
@@ -25,6 +30,15 @@ button:active
     border: solid #000;
 }
 
+.disable button
+{   
+    pointer-events: none;
+
+    color: #9A9A9A;
+
+    border: solid #DBDBDB;
+}
+
 /*记忆库按钮*/
 .bank
 {
@@ -33,14 +47,18 @@ button:active
     max-width: calc(((3840px - 200px) * 0.3 - 25px - 25px) / 2);
 }
 
-/*长按钮，用于右栏中的搜索框*/
+/*长按钮，用于右栏*/
 .long
 {
-    text-align: left;
-
     width: calc((100vw - 200px) * 0.3 - 25px - 50px);
     min-width: calc((1200px - 200px) * 0.3 - 25px - 50px);
     max-width: calc((3840px - 200px) * 0.3 - 25px - 50px);
+}
+
+/*展示信息的框，比如搜索框*/
+.info
+{
+    text-align: left;
 }
 
 /*中等长度的按钮，用于保存到库*/
@@ -51,19 +69,29 @@ button:active
     max-width: calc(((3840px - 200px) * 0.3 - 25px - 50px - 25px) / 2);
 }
 
-/*术语库和记忆库按钮*/
-.tech:hover
+/*删除和警告按钮*/
+.red
 {
-    color: #FFF;
-    
-    background-color: #C20000;
+    color: #BD3124;
+
+    border: solid #BD3124;
 }
 
-.tech:active
+/*术语库和记忆库按钮*/
+.tech:hover,
+.red:hover
 {
     color: #FFF;
     
-    background-color: #8F0000;
+    background-color: #BD3124;
+}
+
+.tech:active,
+.red:active
+{
+    color: #FFF;
+    
+    background-color: #96271D;
 }
 
 .memo:hover

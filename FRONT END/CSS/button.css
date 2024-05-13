@@ -84,6 +84,7 @@ button:active
     color: #FFF;
     
     background-color: #BD3124;
+    border: #BD3124;
 }
 
 .tech:active,
@@ -92,6 +93,7 @@ button:active
     color: #FFF;
     
     background-color: #96271D;
+    border: #96271D;
 }
 
 .memo:hover
@@ -99,6 +101,7 @@ button:active
     color: #FFF;
     
     background-color: #FACD18;
+    border: #FACD18;
 }
 
 .memo:active
@@ -106,4 +109,27 @@ button:active
     color: #FFF;
     
     background-color: #E0AC00;
+    border: #E0AC00;
+}
+
+/*高亮按钮，比如注册按钮*/
+.highlight
+{
+    color: #F08502;
+    border: solid #F08502;
+}
+
+
+.highlight:hover
+{
+    color: #FFF;
+
+    background-color: #F08502;
+    border: solid #F08502;
+}
+
+.highlight:active
+{
+    background-color: #CA7002;
+    border: #CA7002;
 }

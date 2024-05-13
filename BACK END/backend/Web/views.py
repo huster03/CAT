@@ -10,8 +10,12 @@ def login(request):
 def user_register(request):
     return render(request,'user_register.html')
 
-def user_project(request):
-    return render(request, 'user_project.html')
+def translate(request):
+    if request.method == 'POST':
+        return render(request, 'translate.html')
+    original_language_text = request.POST.get('original_language_text')
+    translated_language_text = request.POST.get('translated_language_text')
+    return render(request, 'translate.html', {'original_language_text':original_language_text, 'translated_language_text':translated_language_text})
 
 def user_project_list(request):
     return render(request, 'user_project_list.html')

@@ -17,28 +17,26 @@ class MemoryBankList(models.Model):
     memory_bank_name = models.CharField(max_length=32)
     original_language = models.CharField(max_length=32)
     target_language = models.CharField(max_length=32)
-    number_of_memory_items = models.IntegerField()
+    number_of_memory_items = models.IntegerField(default=0)
 
 class MemoryBankItem(models.Model):
     # 记忆库项目列表
     memory_bank_name = models.CharField(max_length=32)
-    memory_item_id = models.IntegerField()
     original_language_text = models.CharField(max_length=32)
     target_language_text = models.CharField(max_length=32)
     import_time = models.DateTimeField(auto_now_add=True)
-    number_of_calls = models.IntegerField()
+    number_of_calls = models.IntegerField(default=0)
 
 class TermBankList(models.Model):
     # 术语库列表
     term_bank_name = models.CharField(max_length=32)
     original_language = models.CharField(max_length=32)
     target_language = models.CharField(max_length=32)
-    number_of_term_items = models.IntegerField()
+    number_of_term_items = models.IntegerField(default=0)
 
 class TermBankItem(models.Model):
     # 术语库项目列表
     term_bank_name = models.CharField(max_length=32)
-    term_item_id = models.IntegerField()
     original_language_text = models.CharField(max_length=32)
     target_language_text = models.CharField(max_length=32)
     source = models.CharField(max_length=32)

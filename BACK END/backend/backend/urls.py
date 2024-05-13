@@ -22,7 +22,7 @@ urlpatterns = [
     path('login/',views.login),
     path('user/register/',views.user_register),
     path('user/project/list/',views.user_project_list),
-    path('user/project/',views.user_project),
+    path('user/translate/',views.translate),
     path('user/memory bank/list/',views.user_memory_bank_list),
     path('user/memory bank/',views.user_memory_bank),
     path('user/term bank/list/',views.user_term_bank_list),

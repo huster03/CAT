@@ -2,9 +2,13 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="CSS/general.css"/>
-    <link rel="stylesheet" href="CSS/button.css"/>
+    <link rel="stylesheet" href="CSS/general/module.css"/>
+    <link rel="stylesheet" href="CSS/general/button.css"/>
+    <link rel="stylesheet" href="CSS/general/font.css"/>
+    <link rel="stylesheet" href="CSS/general/table.css"/>
+    
     <link rel="stylesheet" href="CSS/user_centre.css"/>
+    <base target="_blank"/>
     <title>用户界面</title>
   </head>
 
@@ -14,7 +18,7 @@
     <div class="user">
       <div class="in">
         <div class="left">
-          用户中心
+          <h1>用户中心</h1>
         </div>
         <div class="right">
           <div><button>帮助</button></div>
@@ -38,8 +42,8 @@
           </div>
         </div>
         <div class="right">
-          <div><button class="bank tech">术语库</button></div>&ensp;
-          <div><button class="bank memo">记忆库</button></div>
+          <div><a href="tech_bank.html"><button class="bank tech">术语库</button></a></div>&ensp;
+          <div><a href="memo_bank.html"><button class="bank memo">记忆库</button></a></div>
         </div>
       </div>
     </div>
@@ -70,14 +74,15 @@
             <tr><td></td><td></td><td></td><td></td></tr>
             <tr><td></td><td></td><td></td><td></td></tr>
             <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
           </table></div>
         </div>
 
         <!--搜索栏-->
        <div class="right">
-          <div class="profile"><img class="profile" src="profile image.jpg" alt="用户头像"/></div>
+          <div class="profile"><img src="profile image.jpg" alt="用户头像"/></div>
           <div class="name">
-            <h4>UserName</h4>
+            <h3>UserName</h3>
             <div class="introduction">用户资料...</div>
           </div>
           <div><button class="long">编辑资料</button></div>
@@ -86,7 +91,7 @@
           <div><button class="long red">注销账户</button></div>
           <div><button class="long red">退出登录</button></div>
           <hr>
-          <h3>搜索</h3>
+          <h4>搜索</h4>
           <div><button class="long info">搜索</button></div>
         </div>
       </div>

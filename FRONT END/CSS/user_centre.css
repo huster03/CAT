@@ -24,6 +24,7 @@
     width: calc((100% - 30px) * 0.3);
 }
 
+/*根据文档类型显示图标*/
 .W > td > div:first-child
 {
     color: #185ABD;
@@ -40,7 +41,7 @@
 }
 
 /*用户头像*/
-div > .profile
+.profile
 {
     display: inline-block;
     overflow: hidden;
@@ -54,7 +55,7 @@ div > .profile
     border-radius: 50%;
 }
 
-img > .profile
+.profile > img
 {
     width: 100%;
     height: 100%;
@@ -65,19 +66,6 @@ img > .profile
     overflow: hidden;
 
     width: calc(100% - 78px);
-}
-
-/*用户名*/
-h4
-{
-    display: inline-block;
-    overflow: hidden;
-
-    font-size: 28px;
-    color: #4F4F4F;
-
-    margin-top: 0;
-    margin-bottom: 0;
 }
 
 .disable .profile
@@ -107,15 +95,19 @@ hr
 .welcome
 {
     text-align: left;
-}
 
-.welcome > div div
-{
-    display: block;
+    max-width: 850px;
+    padding-top: calc(20% - 25px);
+    margin: auto;
 }
 
 .welcome img
 {
-    height: 200px;
-    width: 200px;
+    width: 150px;
+    height: 150px;
+}
+
+.welcome button
+{
+    width: 180px;
 }

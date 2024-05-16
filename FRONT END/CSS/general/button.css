@@ -1,9 +1,4 @@
 /*各种按钮*/
-*
-{
-    box-sizing: border-box;
-}
-
 button
 {
     font-size: 14px;

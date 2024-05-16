@@ -1,9 +1,4 @@
 /*通用的字体和文字格式*/
-*
-{
-    box-sizing: border-box;
-}
-
 @font-face
 {
     font-family: Song;

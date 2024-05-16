@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="CSS/general/font.css"/>
     <link rel="stylesheet" href="CSS/general/table.css"/>
 
-    <link rel="stylesheet" href="CSS/translate.css"/>
-    <base target="_blank"/>
+    <link rel="stylesheet" href="CSS/translate.css"/>   
+    <script src="JavaScript/translate.js"></script>
     <title>翻译界面</title>
   </head>
 
@@ -20,7 +20,7 @@
           <h1>我的文档</h1>
         </div>
         <div class="right">
-          <div><a href="user_centre.html">
+          <div><a href="user_centre.html" target="_blank">
             <div class="profile"><img src="profile image.jpg" alt="前往用户中心"/></div>
             <h1>UserName&ensp;</h1>
           </a></div>                  
@@ -50,8 +50,8 @@
           </div>
         </div>
         <div class="right">
-          <div><a href="tech_bank.html"><button class="bank tech">术语库</button></a></div>&ensp;
-          <div><a href="memo_bank.html"><button class="bank memo">记忆库</button></a></div>
+          <div><a href="tech_bank.html" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
+          <div><a href="memo_bank.html" target="_blank"><button class="bank memo">记忆库</button></a></div>
         </div>
       </div>
     </div>
@@ -127,7 +127,7 @@
         <!--词典栏-->
        <div class="right">
           <h4>词典</h4>
-          <div><button class="long info">搜索</button></div>
+          <div><button class="long info" id="search">搜索</button></div>
           <div><button class="long info">对应翻译</button></div>
           <div class="result">
             搜索结果...

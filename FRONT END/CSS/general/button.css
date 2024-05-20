@@ -1,4 +1,5 @@
-/*各种按钮*/
+/*各种按钮，input也算*/
+input,
 button
 {
     font-size: 14px;
@@ -26,15 +27,6 @@ button:active
     border: solid #000;
 }
 
-.disable button
-{   
-    pointer-events: none;
-
-    color: #9A9A9A;
-
-    border: solid #DBDBDB;
-}
-
 /*记忆库按钮*/
 button.bank
 {
@@ -44,6 +36,7 @@ button.bank
 }
 
 /*长按钮，用于右栏*/
+input,
 button.long
 {
     width: calc((100vw - 200px) * 0.3 - 25px - 50px);
@@ -52,6 +45,7 @@ button.long
 }
 
 /*展示信息的框，比如搜索框*/
+input,
 button.info
 {
     text-align: left;
@@ -134,4 +128,14 @@ button.highlight:active
 button.triple
 {
     width: 64px;
+}
+
+/*禁用区的按钮*/
+.disable button
+{   
+    pointer-events: none;
+
+    color: #9A9A9A;
+
+    border: solid #DBDBDB;
 }

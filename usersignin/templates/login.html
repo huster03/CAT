@@ -1,44 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 {% load static %}
-<html lang="zh-CN"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Login</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/signin.css' %}" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="{% static 'general/button.css' %}">
+    <link rel="stylesheet" href="{% static 'general/font.css' %}">
+    <link rel="stylesheet" href="{% static 'general/module.css' %} ">
+    <link rel="stylesheet" href="{% static 'general/table.css' %} ">
+    <link rel="stylesheet" href="{% static 'general/translate.css' %} ">
+    <base target="_blank"/>
+    <title>用户登陆</title>
   </head>
-<style>
-        html,body{text-align:center;margin:0px auto;}
-</style>
-<body>
-<h1>登录页面</h1>
-<form method = 'post' enctype="multipart/form-data">
-        {% csrf_token %}
-{{userform.as_p}}
-<input type="submit" value = "Login" />
-</form>
-</body>
+
+  <body>
+
+    <!--用户栏-->
+    <div class="user">
+      <div class="in">
+        <div class="left">
+          <h1>辅助翻译</h1>
+        </div>
+        <div class="right">
+          <div><button>帮助</button></div>
+        </div>
+      </div>
+    </div>
+    
+    <!--工具栏-->
+    <div class="tool disable">
+      <div class="in">
+        <div class="left">
+          <div class="left">
+            <div><button>导入</button></div>
+          </div>
+          <div class="right">
+            <div><button>置顶</button></div>&ensp;
+            <div><button>改名</button></div>&ensp;
+            <div><button>复制</button></div>&ensp;
+            <div><button>导出</button></div>&ensp;
+            <div><button class="red">删除</button></div>
+          </div>
+        </div>
+        <div class="right">
+          <div><button class="bank tech">术语库</button></div>&ensp;
+          <div><button class="bank memo">记忆库</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="in">
+        <div class="left">
+          <div class="box">
+            <div class="welcome">
+              <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <h3>用户登陆</h3>
+                <div><input placeholder="用户名" name = "username"></div>
+                <div><input placeholder="密码" type = "password"  name = "password"></div>
+                <div><button class="highlight" type="submit">登陆</button></div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!--搜索栏-->
+       <div class="right disable">
+          <div class="profile empty"></div>
+          <div class="name">
+            <h3>未登录</h3>
+            <div class="introduction">未登录</div>
+          </div>
+          <div><button class="long">编辑资料</button></div>
+          <hr>
+          <div><button class="long red">清空编辑记录</button></div>
+          <div><button class="long red">注销账户</button></div>
+          <div><button class="long red">退出登录</button></div>
+          <hr>
+          <h4>搜索</h4>
+          <div><button class="long info">搜索</button></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

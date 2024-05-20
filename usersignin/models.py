@@ -6,7 +6,6 @@ class User(models.Model):
     objects = models.Manager()
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
-    email = models.EmailField()
 
 class TextTranslationPart(models.Model):
     objects = models.Manager()

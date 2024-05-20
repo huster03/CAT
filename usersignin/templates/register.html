@@ -1,16 +1,16 @@
 <!doctype html>
+{% load static %}
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="CSS/general/module.css"/>
-    <link rel="stylesheet" href="CSS/general/button.css"/>
-    <link rel="stylesheet" href="CSS/general/font.css"/>
-
-    <link rel="stylesheet" href="CSS/user_centre.css"/>
+    <link rel="stylesheet" href="{% static 'general/button.css' %}">
+    <link rel="stylesheet" href="{% static 'general/font.css' %}">
+    <link rel="stylesheet" href="{% static 'general/module.css' %} ">
+    <link rel="stylesheet" href="{% static 'general/table.css' %} ">
+    <link rel="stylesheet" href="{% static 'general/translate.css' %} ">
     <base target="_blank"/>
     <title>注册用户</title>
   </head>
-
   <body>
 
     <!--用户栏-->
@@ -54,12 +54,13 @@
         <div class="left">
           <div class="box">
             <div class="welcome">
-              <form>
+             <form action="{% url 'regist' %}" method="post">
+                {% csrf_token %}
                 <h3>注册用户</h3>
-                <div><input placeholder="用户名"/></div>
-                <div><input placeholder="密码" type="password"/></div>
-                <div><button class="highlight">注册</button></div>
-              </form>          
+                <div><input placeholder="用户名" name = "username"></div>
+                <div><input placeholder="密码" type="password" name = "password"></div>
+                <div><button class="highlight" type="submit">注册</button></div>
+              </form>
             </div>           
           </div>
         </div>

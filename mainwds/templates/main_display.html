@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'general/button.css' %}">
+    <link rel="stylesheet" href="{% static 'general/font.css">
+    <link rel="stylesheet" href="{% static 'general/module.css' %} ">
+    <link rel="stylesheet" href="{% static 'general/table.css' %} ">
+    <link rel="stylesheet" href="{% static 'general/translate.css' %} ">
+    <script>
+        function getTranslatedContent() {
+          // 获取所有class为"translated-textarea"的元素
+          var translatedTextareas = document.querySelectorAll('.translated-textarea');
+          // 创建一个数组存储所有翻译后textarea的值
+          var translatedContent = [];
+          // 遍历所有翻译后textarea,将它们的值添加到数组中
+          for (var i = 0; i < translatedTextareas.length; i++) {
+            translatedContent.push(translatedTextareas[i].value);
+          }
+          const fileContent = translatedContent.join('\n');
+          const blob = new Blob([fileContent], { type: 'text/plain' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.download = 'text_file.txt';
+          link.href = url;
+          // 触发下载
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          var jsonData = JSON.stringify(translatedContent);
+          fetch('/main_display/', {
+             method: 'POST',
+             headers: {
+             'Content-Type': 'application/json',
+             'X-CSRFToken': getCookie('csrftoken') // 获取CSRF令牌
+          },
+         body: jsonData
+         })
+        .then(response => response.json())
+        .then(data => {
+         console.log(data.status); // 打印服务器返回的响应
+         })
+        .catch(error => {
+        console.error('Error:', error);
+        });
+       }
+
+        // 获取CSRF令牌的工具函数
+        function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+              var cookie = cookies[i].trim();
+              // 检查cookie名称是否匹配
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+              }
+            }
+          }
+          return cookieValue;
+        }
+    </script>
+</head>
+<body>
+<!-- upload.html -->
+    <div class="user">
+        <div class="in">
+            <div class="left">
+                <h1>我的文档</h1>
+            </div>
+        </div>
+        <div class="right">
+            <div>
+                <a href="user_centre.html" target="_blank">
+                <div class="profile"><img src="../../FRONT END/profile image.jpg" alt="前往用户中心"/></div>
+                <h1>{{username}}&ensp;</h1>
+                </a>
+            </div>
+            <div><button>帮助</button></div>
+        </div>
+    </div>
+    <div class="tool">
+        <div class="in">
+          <div class="left">
+            <div class="left">
+              <div><button>保存</button></div>&ensp;
+              <div><button>撤回</button></div>&ensp;
+              <div><button>恢复</button></div>&ensp;
+              |&ensp;
+              <div><button>分割</button></div>&ensp;
+              <div><button>合并</button></div>&ensp;
+              |&ensp;
+              <div><button>上段</button></div>&ensp;
+              <div><button>下段</button></div>
+            </div>
+            <div class="right">
+              <div><button>预览</button></div>&ensp;
+              <div><button class="highlight" onclick="getTranslatedContent()">导出</button></div>
+            </div>
+          </div>
+          <div class="right">
+            <div><a href="tech_bank.html" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
+            <div><a href="memo_bank.html" target="_blank"><button class="bank memo">记忆库</button></a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="in">
+          <!--辅助翻译栏-->
+          <div class="left">
+            <div class="box">
+                <table id="translation-list">
+                    <tr>
+                        <th scope="col">&ensp;</th>
+                        <th scope="col">原文</th>
+                        <th scope="col">译文</th>
+                    </tr>
+                    <tr tabindex="0">
+                </table>
+            </div>
+          </div>
+          <!--词典栏-->
+         <div class="right">
+            <h4>词典</h4>
+             <div>
+                 <input type="text" class="long info">
+                 <button>搜索</button>
+             </div>
+             <div><button class="long info">对应翻译</button></div>
+             <div><button type="submit" class="mid tech">保存到术语库</button></div>&ensp;
+             <div><button type="submit" class="mid memo">保存到记忆库</button></div>
+            <div class="result" id="dictionary-search">
+                搜索结果...
+            </div>
+          </div>
+        </div>
+      </div>
+{% if source_text_list and target_text_list %}
+        <script>
+                // 原文句子数组
+                var jsonString1 = "{{ source_text_list|escapejs }}";
+                var originalSentences = JSON.parse(jsonString1);
+                // 翻译后的句子数组
+                var jsonString2 = "{{ target_text_list|escapejs }}";
+                var translatedSentences = JSON.parse(jsonString2);
+                // 创建下拉框
+                var translationList = document.getElementById("translation-list");
+                for (var i = 0; i < translatedSentences.length; i++) {
+                    var translationContainer = document.createElement("tr");
+                    translationContainer.className = "translation-container";
+
+                    var lable_td = document.createElement("td");
+                    var original_td = document.createElement("td");
+                    var translated_td = document.createElement("td");
+
+                    var dropdownLabel = document.createElement("label");
+                    dropdownLabel.className = "dropdown-label";
+                    dropdownLabel.textContent = (i + 1);
+
+                    var originalTextarea = document.createElement("textarea");
+                    originalTextarea.className = "original-textarea";
+                    originalTextarea.value = originalSentences[i];
+
+                    var translatedTextarea = document.createElement("textarea");
+                    translatedTextarea.className = "translated-textarea";
+                    translatedTextarea.value = translatedSentences[i];
+
+                    lable_td.appendChild(dropdownLabel);
+                    original_td.appendChild(originalTextarea);
+                    translated_td.appendChild(translatedTextarea);
+
+                    translationContainer.appendChild(lable_td);
+                    translationContainer.appendChild(original_td);
+                    translationContainer.appendChild(translated_td);
+
+                    translationList.appendChild(translationContainer);
+                }
+        </script>
+{% endif %}
+<!--<form action="{% url 'main_display' %}" method="post">-->
+<!--    {% csrf_token %}-->
+<!--    <input type="text" name="add_memory_source">source-->
+<!--    <input type="text" name="add_memory_target">target-->
+<!--    <button type="submit">添加翻译记忆库</button>-->
+<!--</form>-->
+<!--<form action="{% url 'main_display' %}" method="get">-->
+<!--     {% csrf_token %}-->
+<!--    <input type="text" name="add_special_source">source-->
+<!--    <input type="text" name="add_special_target">target-->
+<!--    <button type="submit">添加术语记忆库</button>-->
+<!--</form>-->
+<!--<div id="source">{{source}}</div>-->
+<!--<div id="target">{{target}}</div>-->
+<!--<form action="{% url 'main_display' %}" method="get">-->
+<!--  <input type="text" name="query_memory">-->
+<!--  <button type="submit">Search</button>-->
+<!--</form>-->
+<!--<form action="{% url 'main_display' %}" method="get">-->
+<!--  <input type="text" name="query_special">-->
+<!--  <button type="submit">Search</button>-->
+<!--</form>-->
+</body>
+</html>

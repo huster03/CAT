@@ -1,0 +1,3 @@
+# .gitattributes 文件内容
+* text=auto
+*.xml text eol=lf

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from .models import TermBankList, TermBankDetail
 # Create your views here.
 def term_bank_interface(request):

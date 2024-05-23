@@ -1,0 +1,108 @@
+/*文档选择表*/
+.format
+{
+    width: 30px;
+}
+
+.doc_name
+{
+    width: calc((100% - 30px) * 0.4);
+}
+
+.upload
+{
+    width: calc((100% - 30px) * 0.3);
+}
+
+.edit
+{
+    width: calc((100% - 30px) * 0.3);
+}
+
+/*根据文档类型显示图标*/
+.W > td > div:first-child
+{
+    color: #185ABD;
+}
+
+.P > td > div:first-child
+{
+    color: #DF0011;
+}
+
+.T > td > div:first-child
+{
+    color: #9A9A9A;
+}
+
+/*用户头像*/
+.profile
+{
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+
+    width: 60px;
+    height: 60px;
+    margin-right: 8px;
+    margin-bottom: 16px;
+
+    border-radius: 50%;
+}
+
+.profile > img
+{
+    width: 100%;
+    height: 100%;
+}
+
+.name
+{
+    overflow: hidden;
+
+    width: calc(100% - 78px);
+}
+
+.disable .profile
+{
+    background-color: #FFF;
+    border: solid #DBDBDB;
+}
+
+.disable h4
+{
+    color: #9A9A9A
+}
+
+.introduction
+{
+    margin-left: 4px;
+    color: #9A9A9A;
+}
+
+hr
+{
+    margin-top: 20px;
+    margin-bottom: 28px;
+}
+
+/*欢迎界面*/
+.welcome
+{
+    text-align: left;
+
+    max-width: 850px;
+    padding-top: calc(20% - 25px);
+    margin: auto;
+}
+
+.welcome img
+{
+    width: 150px;
+    height: 150px;
+}
+
+.welcome button
+{
+    width: 180px;
+}

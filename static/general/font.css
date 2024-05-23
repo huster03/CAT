@@ -1,0 +1,71 @@
+/*通用的字体和文字格式*/
+@font-face
+{
+    font-family: Song;
+    src: url("../SourceHanSerifSC-VF.ttf") format("opentype");
+}
+
+/*页面标题*/
+h1
+{
+    display: inline-block;
+    
+    font-size: 24px;
+    font-family: Song;
+    font-weight: 900;
+    color: #FFF;
+
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/*欢迎页面标语*/
+h2
+{
+    font-size: 40px;
+    font-family: Song;
+    font-weight: 900;
+    color: #4F4F4F;
+
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+/*用户名*/
+h3
+{
+    display: inline-block;
+    overflow: hidden;
+
+    font-size: 28px;
+    font-family: Song;
+    font-weight: 900;
+    color: #4F4F4F;
+
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/*搜索栏标题*/
+h4
+{
+    font-size: 28px;
+    font-family: Song;
+    font-weight: 900;
+    color: #F08502;
+
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+/*翻译内容*/
+h5
+{
+    font-size: 18px;
+    font-family: Times, Song;
+    font-weight: 400;
+    color: #000;
+
+    margin-top: 0;
+    margin-bottom: 0;
+}

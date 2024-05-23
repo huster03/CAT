@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="zh-CN">
   <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="CSS/general/module.css"/>
-    <link rel="stylesheet" href="CSS/general/button.css"/>
-    <link rel="stylesheet" href="CSS/general/font.css"/>
-    <link rel="stylesheet" href="CSS/general/table.css"/>
+    <link rel="stylesheet" href="{% static 'CSS/general/module.css' %}"/>
+    <link rel="stylesheet" href="{% static 'CSS/general/button.css' %}"/>
+    <link rel="stylesheet" href="{% static 'CSS/general/font.css' %}"/>
+    <link rel="stylesheet" href="{% static 'CSS/general/table.css' %}"/>
     
-    <link rel="stylesheet" href="CSS/bank.css"/>
+    <link rel="stylesheet" href="{% static 'CSS/bank.css' %}"/>
     <title>记忆库界面</title>
   </head>
 
@@ -21,8 +20,8 @@
         </div>
         <div class="right">
           <div>
-            <div><a href="user_centre.html" target="_blank">
-              <div class="profile"><img src="profile image.jpg" alt="前往用户中心"/></div>
+            <div><a href="{% url 'user_centre' %}" target="_blank">
+              <div class="profile"><img src="{% static 'profile/image.jpg' %}" alt="前往用户中心"/></div>
               <h1>UserName&ensp;</h1>
             </a></div> 
           </div>    
@@ -48,7 +47,7 @@
           </div>
         </div>
         <div class="right">
-          <div><a href="tech_bank.html" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
+          <div><a href="{% url 'term_bank_list' %}" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
           <div class="disable"><button class="bank memo">记忆库</button></div>
         </div>
       </div>
@@ -66,21 +65,14 @@
               <th scope="col">目标语言</th>
               <th scope="col">词条数量</th>
             </tr>
-            <tr tabindex="0"><td><div>1</div></td><td>中文</td><td>英文</td><td>8000</td></tr>
-            <tr tabindex="0"><td><div>2</div></td><td>英文</td><td>中文</td><td>1000</td></tr>
-            <tr tabindex="0"><td><div>3</div></td><td>中文</td><td>西班牙文</td><td>200</td></tr>
-            <tr tabindex="0"><td><div>4</div></td><td>西班牙文</td><td>中文</td><td>100</td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
+            {% for item in memory_bank_data %}
+            <tr tabindex="0">
+              <td><div>{{ forloop.counter }}</div></td>
+              <td>{{ item.source_language }}</td>
+              <td>{{ item.target_language }}</td>
+              <td>{{ item.entry_count }}</td>
+            </tr>
+            {% endfor %}
           </table></div>
         </div>
 

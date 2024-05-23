@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from usersignin.models import User
 from memorydata.models import Memorydatatable
-from specialdata.models import Specialdatatable
+from specialdata.models import TermBankList
 from usersignin.models import  TextTranslationPart
 import json
 
@@ -54,7 +54,7 @@ def searchSpecialData(request):
     if request.method == 'GET':
         query_special = request.GET.get('query_special', '')
         if query_special is not None:
-            SpecialDatas = Specialdatatable.objects.filter(source_text__icontains=query_special)
+            SpecialDatas = TermBankList.objects.filter(source_text__icontains=query_special)
             return {'SpecialDatas': SpecialDatas, 'query_special': query_special}
 
     return {}
@@ -72,7 +72,7 @@ def addSpecialData(request, user_id):
     if request.method == "POST" and 'add_special_source' in request.POST:
         add_special_source = request.POST.get('add_special_source')
         add_special_target = request.POST.get('add_special_target')
-        addedSpecialData = Specialdatatable(source_text=add_special_source, target_text=add_special_target,
+        addedSpecialData = TermBankList(source_text=add_special_source, target_text=add_special_target,
                                             user_id=user_id)
         addedSpecialData.save()
 

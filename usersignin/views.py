@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django import forms
 from .models import User
 from memorydata.models import Memorydatatable
-from specialdata.models import Specialdatatable
+from specialdata.models import TermBankList
 import os
 from mainwds import translate
 from .models import TextTranslationPart
@@ -19,7 +19,7 @@ def regist(request):
         password = request.POST.get("password")
         user = User.objects.create(username=username,password=password)
         Memorydatatable.objects.create(user = user)
-        Specialdatatable.objects.create(user = user)
+        TermBankList.objects.create(user = user)
         user.save()
         return redirect('/login')
     return render(request,'register.html')

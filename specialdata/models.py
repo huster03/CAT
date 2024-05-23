@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 class TermBankList(models.Model):
+    objects = models.Manager()
     source_language = models.TextField()
     target_language = models.TextField()
     term_bank = models.TextField()

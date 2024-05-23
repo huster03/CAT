@@ -60,7 +60,9 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR,'usersignin/templates'),
-            os.path.join(BASE_DIR,'mainwds/templates')
+            os.path.join(BASE_DIR,'mainwds/templates'),
+            os.path.join(BASE_DIR,'specialdata/templates'),
+            os.path.join(BASE_DIR,'memorydata/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

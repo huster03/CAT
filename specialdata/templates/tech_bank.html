@@ -66,21 +66,14 @@
               <th scope="col">目标语言</th>
               <th scope="col">词条数量</th>
             </tr>
+            {% for term_bank in term_banks %}
+            <tr tabindex="0"><td><div>{{ forloop.counter }}</div></td><td>{{ term_bank.name }}</td><td>{{ term_bank.source_lang }}</td><td>{{ term_bank.target_lang }}</td><td>{{ term_bank.term_count }}</td></tr>
+            {% endfor %}
             <tr tabindex="0"><td><div>1</div></td><td>医学库</td><td>中文</td><td>英文</td><td>1000</td></tr>
             <tr tabindex="0"><td><div>2</div></td><td>医学库</td><td>英文</td><td>中文</td><td>1000</td></tr>
             <tr tabindex="0"><td><div>3</div></td><td>地名库</td><td>英文</td><td>中文</td><td>200</td></tr>
             <tr tabindex="0"><td><div>4</div></td><td>天文库</td><td>中文</td><td>西班牙文</td><td>800</td></tr>
             <tr tabindex="0"><td><div>5</div></td><td>天文库</td><td>西班牙文</td><td>中文</td><td>800</td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td></tr>
           </table></div>
         </div>
 

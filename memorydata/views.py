@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import MemoryBankList,MemoryBankDetail
+from django.core.paginator import Paginator
 
 # Create your views here.
 def user_certre(request):
@@ -15,8 +16,11 @@ def memory_bank_detail(request, memory_bank_id):
         memory_bank_detail = MemoryBankDetail.objects.get(memory_bank=memory_bank)
     except MemoryBankDetail.DoesNotExist:
         memory_bank_detail = None
-    
-    return render(request, 'memory_bank_detail.html', {'memory_bank': memory_bank, 'memory_bank_detail': memory_bank_detail})
+    paginator = Paginator(memory_bank_detail, 20)  # 在这里假设一页显示20条数据
+    page = request.GET.get('page')
+    memory_bank_page = paginator.get_page(page)
+
+    return render(request, 'memory_bank_detail.html', {'memory_bank': memory_bank, 'memory_bank_detail': memory_bank_detail, 'memory_bank_page': memory_bank_page})
 
 
 def searchMemoryData(request):

@@ -66,7 +66,7 @@
               <th scope="col">生成日期</th>
               <th scope="col">调用次数</th>
             </tr>
-            {% for item in term_bank_detail %}
+            {% for item in memory_bank_detail %}
             <tr tabindex="0"><td><div>{{ forloop.counter }}</div></td>
             <td>{{ item.source_language }}</td>
             <td>{{ item.target_language }}</td>
@@ -75,21 +75,21 @@
             {% endfor %}
             </table></div>
           <div class="left">
-            {% if term_bank_list.has_previous %}
+            {% if memory_bank_detail.has_previous %}
       <a href="?page=1"><button class="triple">首页</button></a>
-      <a href="?page={{ term_bank_list.previous_page_number }}"><button class="triple">上一页</button></a>
+      <a href="?page={{ memory_bank_detail.previous_page_number }}"><button class="triple">上一页</button></a>
     {% endif %}
-    <div>第 {{ term_bank_list.number }} 页&ensp;</div>
-    {% if term_bank_list.has_next %}
-      <a href="?page={{ term_bank_list.next_page_number }}"><button class="triple">下一页</button></a>
-      <a href="?page={{ term_bank_list.paginator.num_pages }}"><button class="triple">末页</button></a>
+    <div>第 {{ memory_bank_detail.number }} 页&ensp;</div>
+    {% if memory_bank_detail.has_next %}
+      <a href="?page={{ memory_bank_detail.next_page_number }}"><button class="triple">下一页</button></a>
+      <a href="?page={{ memory_bank_detail.paginator.num_pages }}"><button class="triple">末页</button></a>
     {% endif %}
     <form method="get" action="">
-      <input type="number" name="page" min="1" max="{{ term_bank_list.paginator.num_pages }}" value="{{ term_bank_list.number }}">
+      <input type="number" name="page" min="1" max="{{ memory_bank_detail.paginator.num_pages }}" value="{{ memory_bank_detail.number }}">
       <input type="submit" value="跳转">
     </form>
   </div>
-  <div class="right">共 {{ term_bank_list.paginator.num_pages }} 页</div>
+  <div class="right">共 {{ memory_bank_detail.paginator.num_pages }} 页</div>
 </div>
 
         <!--搜索栏-->

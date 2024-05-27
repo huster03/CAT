@@ -56,8 +56,6 @@
 
     <div class="main">
       <div class="in">
-
-        <!--术语库列表-->
         <div class="left memo">
           <div class="box"><table>
             <tr>
@@ -86,8 +84,16 @@
 
         <!--搜索栏-->
        <div class="right">
-          <h4>搜索</h4>
-          <div><button class="long info">搜索</button></div>
+        <form action="{% url 'memo_bank' %}" method="get">
+           <input type="text" name="query_memory">
+        <button type="submit">Search</button>
+        </form>
+         <form action="{% url 'main_display' %}" method="post">
+           {% csrf_token %}
+           <input type="text" name="add_memory_source">source
+           <input type="text" name="add_memory_target">target
+           <button type="submit">添加翻译记忆库</button>
+          </form>
         </div>
       </div>
     </div>

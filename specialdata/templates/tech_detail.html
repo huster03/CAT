@@ -97,8 +97,16 @@
 
         <!--搜索栏-->
        <div class="right">
-          <h4>搜索</h4>
-          <div><button class="long info">搜索</button></div>
+          <form action="{% url 'tech_detail' %}" method="get">
+            <input type="text" name="query_special">
+           <button type="submit">Search</button>
+          </form>
+          <form action="{% url 'main_display' %}" method="get">
+               {% csrf_token %}
+              <input type="text" name="add_special_source">source
+              <input type="text" name="add_special_target">target
+              <button type="submit">添加术语记忆库</button>
+          </form>
         </div>
       </div>
     </div>

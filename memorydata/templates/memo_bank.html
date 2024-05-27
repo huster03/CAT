@@ -56,7 +56,7 @@
     <div class="main">
       <div class="in">
 
-        <!--术语库列表-->
+        <!--记忆库列表-->
         <div class="left memo">
           <div class="box"><table>
             <tr>
@@ -77,9 +77,11 @@
         </div>
 
         <!--搜索栏-->
-       <div class="right">
-          <h4>搜索</h4>
-          <div><button class="long info">搜索</button></div>
+        <div>
+          <form action="{% url 'search_memory_data' %}" method="GET">
+            <input type="text" name="keyword" placeholder="输入关键词">
+            <button type="submit" class="long info">搜索</button>
+          </form></div>
         </div>
       </div>
     </div>

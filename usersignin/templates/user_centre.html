@@ -47,28 +47,21 @@
 
         <!--文档选择表-->
         <div class="left">
+          <div class="uploadFile">
+            <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form }}
+                  <button type="submit">上传</button>
+            </form>
+          </div>
           <div class="box"><table>
             <tr>
-              <th class="format">&ensp;</th>
               <th class="doc_name">文档名称</th>
               <th class="upload">导入日期</th>
-              <th class="edit">修改日期</th>
             </tr>
-            <tr tabindex="0" class="W"><td><div>W</div></td><td>文档1.docx</td><td>2024/01/24</td><td>2024/01/26</td></tr>
-            <tr tabindex="0" class="P"><td><div>P</div></td><td>文档2.pdf</td><td>2024/01/24</td><td>2024/01/26</td></tr>
-            <tr tabindex="0" class="W"><td><div>W</div></td><td>文档3.docx</td><td>2024/01/24</td><td>2024/01/26</td></tr>
-            <tr tabindex="0" class="T"><td><div>T</div></td><td>文档4.txt</td><td>2024/01/24</td><td>2024/01/26</td></tr>
-            <tr tabindex="0" class="T"><td><div>T</div></td><td>文档5.txt</td><td>2024/01/24</td><td>2024/01/26</td></tr>
-            <tr tabindex="0" class="W"><td><div>W</div></td><td>文档6.docx</td><td>2024/01/24</td><td>2024/01/26</td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
+            {% for project_info in project_infos %}
+              <tr tabindex="0"><td><a href="{% url 'translation_view' project_info.project_name %}">{{ project_info.project_name }}</a></td><td>{{project_info.create_at}}</td></tr>
+            {% endfor %}
           </table></div>
         </div>
 
@@ -76,7 +69,7 @@
        <div class="right">
           <div class="profile"><img src="profile image.jpg" alt="用户头像"/></div>
           <div class="name">
-            <h3>UserName</h3>
+            <h3>{{username}}</h3>
             <div class="introduction">用户资料...</div>
           </div>
           <div><button class="long">编辑资料</button></div>

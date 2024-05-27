@@ -3,22 +3,26 @@ from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django import forms
 from .models import User
-from memorydata.models import Memorydatatable
+from memorydata.models import MemoryBankDetail
 from specialdata.models import TermBankList
 import os
 from mainwds import translate
 from .models import TextTranslationPart
 from CAT import settings
-from mainwds.views import get_translation_data
 # Create your views here.
 class UploadFileForm(forms.Form):
     file = forms.FileField()
+
+def get_project_infos_for_user(username):
+    return TextTranslationPart.objects.filter(username=username) \
+                          .values('project_name', 'created_at') \
+                          .distinct()
 def regist(request):
     if request.method == 'POST':
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = User.objects.create(username=username,password=password)
-        Memorydatatable.objects.create(user = user)
+        MemoryBankDetail.objects.create(user = user)
         TermBankList.objects.create(user = user)
         user.save()
         return redirect('/login')
@@ -31,19 +35,14 @@ def login(request):
         flag = User.objects.filter(username__exact=username,password__exact=password)
         if flag:
             request.session['username'] = username
-            if get_translation_data(username) != (None,None) :
-                print(get_translation_data(username))
-                return redirect('/main_display')
-            else:
-                return redirect('/uploadFile')
+            return redirect('/user_centre')
         else:
             return HttpResponse('用户名或密码错误,请重新登录')
     return render(request,'login.html')
+def user_centre(request):
+    username = request.session.get('username')
 
-def upload_file(request):
-    form =  UploadFileForm()
     if request.method == 'POST':
-        username = request.session.get('username')
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             uploaded_file = request.FILES['file']
@@ -53,8 +52,6 @@ def upload_file(request):
                 for chunk in uploaded_file.chunks():
                     destination.write(chunk)
             source, target = translate.trans(path)
-
-            # 按索引分段保存到数据库
             for i in range(len(source)):
                 TextTranslationPart.objects.create(
                     username=username,
@@ -63,4 +60,12 @@ def upload_file(request):
                     target_text=target[i]
                 )
             return redirect('/main_display/')
-    return render(request,'uploadFile.html',{'form':form})
+    else:
+        form = UploadFileForm()
+
+    project_infos = get_project_infos_for_user(username)
+
+    return render(request, 'user_centre.html', {
+        'form': form,
+        'project_infos': project_infos
+    })

@@ -17,7 +17,7 @@ def searchMemoryData(request):
 
 def addMemoryData(request, user_id):
     if request.method == "POST" and 'add_memory_source' in request.POST:
-        add_memory_source = request.POST.get('add_memory_source')
-        add_memory_target = request.POST.get('add_memory_target')
+        add_memory_source = request.POST.get('add_memo_source')
+        add_memory_target = request.POST.get('add_memo_target')
         addedMemoryData = MemoryBankDetail(source_text=add_memory_source, target_text=add_memory_target, user_id=user_id)
         addedMemoryData.save()

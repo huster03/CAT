@@ -76,25 +76,6 @@
             {% endfor %}
           </table></div>
         </div>
-
-        <!--搜索栏-->
-       <div class="right">
-        <form action="{% url 'memo_bank' %}" method="get">
-           <input type="text" name="query_memory">
-        <button type="submit">Search</button>
-        </form>
-         <form action="{% url 'main_display' %}" method="post">
-           {% csrf_token %}
-           <input type="text" name="add_memory_source">source
-           <input type="text" name="add_memory_target">target
-           <button type="submit">添加翻译记忆库</button>
-          </form>
-        <div>
-          <form action="{% url 'search_memory_data' %}" method="GET">
-            <input type="text" name="keyword" placeholder="输入关键词">
-            <button type="submit" class="long info">搜索</button>
-          </form></div>
-        </div>
       </div>
     </div>
   </body>

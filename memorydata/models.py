@@ -7,8 +7,7 @@ class MemoryBankDetail(models.Model):
     target_text = models.TextField()
     memory_bank = models.ForeignKey('MemoryBankList', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    used_count = models.IntegerField(default=0)
+    called_count = models.IntegerField(default=0)
     user = models.ForeignKey('usersignin.User', on_delete=models.CASCADE)
 
     def __str__(self):

@@ -62,13 +62,15 @@
           <div class="box"><table>
             <tr>
               <th scope="col">&ensp;</th>
+              <th scope="col">术语库名称</th>
               <th scope="col">源语言</th>
               <th scope="col">目标语言</th>
               <th scope="col">词条数量</th>
             </tr>
             {% for item in memory_bank_data %}
-            <tr tabindex="0" onclick="window.location='{% url 'memo_bank_detail' item.id %}'">
+            <tr tabindex="0" >
               <td><div>{{ forloop.counter }}</div></td>
+              <td><a href="{% url 'memory_bank_detail' item.id %}" target="_blank">{{ item.name }}</a></td>
               <td>{{ item.source_language }}</td>
               <td>{{ item.target_language }}</td>
               <td>{{ item.entry_count }}</td>

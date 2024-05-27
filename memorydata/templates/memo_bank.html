@@ -67,7 +67,7 @@
               <th scope="col">目标语言</th>
               <th scope="col">词条数量</th>
             </tr>
-            {% for item in memory_bank_data %}
+            {% for item in memory_banks %}
             <tr tabindex="0" >
               <td><div>{{ forloop.counter }}</div></td>
               <td><a href="{% url 'memory_bank_detail' item.id %}" target="_blank">{{ item.name }}</a></td>

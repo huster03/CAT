@@ -4,8 +4,10 @@ from .models import MemoryBankList,MemoryBankDetail
 # Create your views here.
 def user_certre(request):
     return render(request, 'user_centre.html')
-def memo_bank(request):
-    return render(request, 'memo_bank.html')
+
+def memory_bank_list(request):
+    memory_banks = MemoryBankList.objects.all()
+    return render(request, 'memory_bank.html', {'memory_banks': memory_banks})
 
 def memory_bank_detail(request, memory_bank_id):
     memory_bank = memory_bank.objects.get(id=memory_bank_id)

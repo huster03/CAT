@@ -2,12 +2,12 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="CSS/general/module.css"/>
-    <link rel="stylesheet" href="CSS/general/button.css"/>
-    <link rel="stylesheet" href="CSS/general/font.css"/>
-    <link rel="stylesheet" href="CSS/general/table.css"/>
+    <link rel="stylesheet" href="{% static 'CSS/general/module.css' %}"/>
+    <link rel="stylesheet" href="{% static 'CSS/general/button.css' %}"/>
+    <link rel="stylesheet" href="{% static 'CSS/general/font.css' %}"/>
+    <link rel="stylesheet" href="{% static 'CSS/general/table.css' %}"/>
     
-    <link rel="stylesheet" href="CSS/bank.css"/>
+    <link rel="stylesheet" href="{% static 'CSS/bank.css' %}"/>
     <title>术语库详情</title>
   </head>
 
@@ -21,8 +21,8 @@
         </div>
         <div class="right">
           <div>
-            <div><a href="user_centre.html" target="_blank">
-              <div class="profile"><img src="profile image.jpg" alt="前往用户中心"/></div>
+            <div><a href="{% url 'user_centre' %}" target="_blank">
+              <div class="profile"><img src="{% static 'profile/image.jpg' %}" alt="前往用户中心"/></div>
               <h1>UserName&ensp;</h1>
             </a></div> 
           </div>    
@@ -48,7 +48,7 @@
         </div>
         <div class="right">
           <div class="disable"><button class="bank tech">术语库</button></div>&ensp;
-          <div><a href="memo_bank.html" target="_blank"><button class="bank memo">记忆库</button></a></div>
+          <div><a href="{% url 'memo_bank' %}" target="_blank"><button class="bank memo">记忆库</button></a></div>
         </div>
       </div>
     </div>
@@ -65,35 +65,27 @@
               <th scope="col">目标语言</th>
               <th scope="col">调用次数</th>
             </tr>
-            <tr tabindex="0"><td><div>1</div></td><td>Source1</td><td>术语1</td><td>10</td></tr>
-            <tr tabindex="0"><td><div>2</div></td><td>Source2</td><td>术语2</td><td>2</td></tr>
-            <tr tabindex="0"><td><div>3</div></td><td>Source3</td><td>术语3</td><td>4</td></tr>
-            <tr tabindex="0"><td><div>4</div></td><td>Source4</td><td>术语4</td><td>0</td></tr>
-            <tr tabindex="0"><td><div>5</div></td><td>Source5</td><td>术语5</td><td>125</td></tr>
-            <tr tabindex="0"><td><div>6</div></td><td>Source6</td><td>术语6</td><td>56</td></tr>
-            <tr tabindex="0"><td><div>7</div></td><td>Source7</td><td>术语7</td><td>7</td></tr>
-            <tr tabindex="0"><td><div>8</div></td><td>Source8</td><td>术语8</td><td>1</td></tr>
-            <tr tabindex="0"><td><div>9</div></td><td>Source9</td><td>术语9</td><td>14</td></tr>
-            <tr tabindex="0"><td><div>10</div></td><td>Source10</td><td>术语10</td><td>31</td></tr>
-            <tr tabindex="0"><td><div>11</div></td><td>Source11</td><td>术语11</td><td>2</td></tr>
-            <tr tabindex="0"><td><div>12</div></td><td>Source12</td><td>术语12</td><td>0</td></tr>
-            <tr tabindex="0"><td><div>13</div></td><td>Source13</td><td>术语13</td><td>29</td></tr>
-            <tr tabindex="0"><td><div>14</div></td><td>Source14</td><td>术语14</td><td>5</td></tr>
-            <tr tabindex="0"><td><div>15</div></td><td>Source15</td><td>术语15</td><td>266</td></tr>
-            <tr tabindex="0"><td><div>16</div></td><td>Source16</td><td>术语16</td><td>4</td></tr>
-            <tr tabindex="0"><td><div>17</div></td><td>Source17</td><td>术语17</td><td>7</td></tr>
-            <tr tabindex="0"><td><div>18</div></td><td>Source18</td><td>术语18</td><td>32</td></tr>
-            <tr tabindex="0"><td><div>19</div></td><td>Source19</td><td>术语19</td><td>9</td></tr>
-            <tr tabindex="0"><td><div>20</div></td><td>Source20</td><td>术语20</td><td>0</td></tr>
-          </table></div>
+            {% for item in term_bank_detail %}
+            <tr tabindex="0"><td><div>{{ forloop.counter }}</div></td><td>{{ item.source_language }}</td><td>{{ item.target_language }}</td><td>{{ item.call_times }}</td></tr>
+            {% endfor %}
+            </table></div>
           <div class="left">
-            <div><button class="triple">上一页</button></div>&ensp;
-            <div>第 1 页&ensp;</div>
-            <div><button class="triple">下一页</button></div>&ensp;
-            <div><button class="mid info">跳转</button></div>&ensp;
-          </div>
-          <div class="right">共 30 页</div>
-        </div>
+            {% if term_bank_list.has_previous %}
+      <a href="?page=1"><button class="triple">首页</button></a>
+      <a href="?page={{ term_bank_list.previous_page_number }}"><button class="triple">上一页</button></a>
+    {% endif %}
+    <div>第 {{ term_bank_list.number }} 页&ensp;</div>
+    {% if term_bank_list.has_next %}
+      <a href="?page={{ term_bank_list.next_page_number }}"><button class="triple">下一页</button></a>
+      <a href="?page={{ term_bank_list.paginator.num_pages }}"><button class="triple">末页</button></a>
+    {% endif %}
+    <form method="get" action="">
+      <input type="number" name="page" min="1" max="{{ term_bank_list.paginator.num_pages }}" value="{{ term_bank_list.number }}">
+      <input type="submit" value="跳转">
+    </form>
+  </div>
+  <div class="right">共 {{ term_bank_list.paginator.num_pages }} 页</div>
+</div>
 
         <!--搜索栏-->
        <div class="right">

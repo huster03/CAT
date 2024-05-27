@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="right">
-          <div><a href="tech_bank.html" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
+          <div><a href="{% url 'term_bank_list' %}" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
           <div class="disable"><button class="bank memo">记忆库</button></div>
         </div>
       </div>
@@ -56,6 +56,8 @@
 
     <div class="main">
       <div class="in">
+
+        <!--记忆库列表-->
         <div class="left memo">
           <div class="box"><table>
             <tr>
@@ -64,21 +66,14 @@
               <th scope="col">目标语言</th>
               <th scope="col">词条数量</th>
             </tr>
-            <tr tabindex="0"><td><div>1</div></td><td>中文</td><td>英文</td><td>8000</td></tr>
-            <tr tabindex="0"><td><div>2</div></td><td>英文</td><td>中文</td><td>1000</td></tr>
-            <tr tabindex="0"><td><div>3</div></td><td>中文</td><td>西班牙文</td><td>200</td></tr>
-            <tr tabindex="0"><td><div>4</div></td><td>西班牙文</td><td>中文</td><td>100</td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
+            {% for item in memory_bank_data %}
+            <tr tabindex="0">
+              <td><div>{{ forloop.counter }}</div></td>
+              <td>{{ item.source_language }}</td>
+              <td>{{ item.target_language }}</td>
+              <td>{{ item.entry_count }}</td>
+            </tr>
+            {% endfor %}
           </table></div>
         </div>
 
@@ -94,6 +89,11 @@
            <input type="text" name="add_memory_target">target
            <button type="submit">添加翻译记忆库</button>
           </form>
+        <div>
+          <form action="{% url 'search_memory_data' %}" method="GET">
+            <input type="text" name="keyword" placeholder="输入关键词">
+            <button type="submit" class="long info">搜索</button>
+          </form></div>
         </div>
       </div>
     </div>

@@ -2,8 +2,6 @@ from django import forms
 from django.http import JsonResponse
 from django.shortcuts import render
 from usersignin.models import User
-from memorydata.models import Memorydatatable
-from specialdata.models import TermBankList
 from usersignin.models import  TextTranslationPart
 import json
 
@@ -51,8 +49,4 @@ def main_display(request):
     user_id = user.id
     updateMysqldata(request,username)
     context.update(display_translation(request, username))
-    context.update(searchMemoryData(request))
-    context.update(searchSpecialData(request))
-    addMemoryData(request, user_id)
-    addSpecialData(request, user_id)
     return render(request, 'main_display.html', context)

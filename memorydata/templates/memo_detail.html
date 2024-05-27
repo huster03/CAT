@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{% static 'CSS/general/button.css' %}"/>
     <link rel="stylesheet" href="{% static 'CSS/general/font.css' %}"/>
     <link rel="stylesheet" href="{% static 'CSS/general/table.css' %}"/>
-    
+
     <link rel="stylesheet" href="{% static 'CSS/bank.css' %}"/>
     <title>术语库详情</title>
   </head>
@@ -17,20 +17,20 @@
     <div class="user tech">
       <div class="in">
         <div class="left">
-          <h1>{{ term_bank.name }}</h1>
+          <h1>天文术语库</h1>
         </div>
         <div class="right">
           <div>
             <div><a href="{% url 'user_centre' %}" target="_blank">
               <div class="profile"><img src="{% static 'profile/image.jpg' %}" alt="前往用户中心"/></div>
               <h1>UserName&ensp;</h1>
-            </a></div> 
-          </div>    
+            </a></div>
+          </div>
           <div><button>帮助</button></div>
         </div>
       </div>
     </div>
-    
+
     <!--工具栏-->
     <div class="tool">
       <div class="in">
@@ -89,14 +89,14 @@
 
         <!--搜索栏-->
        <div class="right">
-          <form action="{% url 'tech_detail' %}" method="get">
-            <input type="text" name="query_special">
+          <form action="{% url 'memo_detail' %}" method="get">
+            <input type="text" name="query_memo">
            <button type="submit">Search</button>
           </form>
-          <form action="{% url 'main_display' %}" method="get">
+          <form action="{% url 'memo_detail' %}" method="get">
                {% csrf_token %}
-              <input type="text" name="add_special_source">source
-              <input type="text" name="add_special_target">target
+              <input type="text" name="add_memo_source">source
+              <input type="text" name="add_memo_target">target
               <button type="submit">添加术语记忆库</button>
           </form>
         </div>

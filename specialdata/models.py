@@ -10,6 +10,7 @@ class TermBankList(models.Model):
     user = models.ForeignKey('usersignin.User', on_delete=models.CASCADE)
 
 class TermBankDetail(models.Model):
+    objects = models.Manager()
     term_bank_name = models.TextField()
     source_text = models.TextField()
     target_text = models.TextField()

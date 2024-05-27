@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="zh-CN">
   <head>
-    <link rel="stylesheet" href="{% static 'CSS/general/module.css' %}"/>
-    <link rel="stylesheet" href="{% static 'CSS/general/button.css' %}"/>
-    <link rel="stylesheet" href="{% static 'CSS/general/font.css' %}"/>
-    <link rel="stylesheet" href="{% static 'CSS/general/table.css' %}"/>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="CSS/general/module.css"/>
+    <link rel="stylesheet" href="CSS/general/button.css"/>
+    <link rel="stylesheet" href="CSS/general/font.css"/>
+    <link rel="stylesheet" href="CSS/general/table.css"/>
     
-    <link rel="stylesheet" href="{% static 'CSS/bank.css' %}"/>
+    <link rel="stylesheet" href="CSS/bank.css"/>
     <title>记忆库界面</title>
   </head>
 
@@ -20,8 +21,8 @@
         </div>
         <div class="right">
           <div>
-            <div><a href="{% url 'user_centre' %}" target="_blank">
-              <div class="profile"><img src="{% static 'profile/image.jpg' %}" alt="前往用户中心"/></div>
+            <div><a href="user_centre.html" target="_blank">
+              <div class="profile"><img src="profile image.jpg" alt="前往用户中心"/></div>
               <h1>UserName&ensp;</h1>
             </a></div> 
           </div>    
@@ -74,14 +75,6 @@
             </tr>
             {% endfor %}
           </table></div>
-        </div>
-
-        <!--搜索栏-->
-        <div>
-          <form action="{% url 'search_memory_data' %}" method="GET">
-            <input type="text" name="keyword" placeholder="输入关键词">
-            <button type="submit" class="long info">搜索</button>
-          </form></div>
         </div>
       </div>
     </div>

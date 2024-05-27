@@ -37,7 +37,7 @@
         <div class="left">
           <div class="left">
             <div><button>导入</button></div>&ensp;
-            <div><button>新建</button></div>
+            <div><button onclick="createMemoryBank()">新建</button></div>
           </div>
           <div class="right">
             <div><button>置顶</button></div>&ensp;
@@ -53,6 +53,32 @@
         </div>
       </div>
     </div>
+
+    <script>
+      function createMemoryBank() {
+        // 使用 Fetch API 发送 POST 请求给后端
+  fetch('/create_memory_bank', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name: 'New Memory Bank' }) // 传递新记忆库的名称等参数
+  })
+  .then(response => {
+    if (response.ok) {
+      // 请求成功，进行页面更新等操作
+      console.log('新建记忆库成功！');
+    } else {
+      // 请求失败，处理失败情况
+      console.error('新建记忆库失败');
+    }
+  })
+  .catch(error => {
+    // 处理请求过程中的错误
+    console.error('请求创建记忆库时出现错误:', error);
+  });
+      }
+    </script>
 
     <div class="main">
       <div class="in">

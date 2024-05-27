@@ -5,7 +5,7 @@ class MemoryBankDetail(models.Model):
     objects = models.Manager()
     source_text = models.TextField()
     target_text = models.TextField()
-    memory_bank = models.ForeignKey('MemoryBank', on_delete=models.CASCADE)
+    memory_bank = models.ForeignKey('MemoryBankList', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     used_count = models.IntegerField(default=0)

@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="right">
-          <div><a href="{% url 'term_bank_list' %}" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
+          <div><a href="{% url 'memory_bank_list' %}" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
           <div class="disable"><button class="bank memo">记忆库</button></div>
         </div>
       </div>
@@ -67,7 +67,7 @@
               <th scope="col">词条数量</th>
             </tr>
             {% for item in memory_bank_data %}
-            <tr tabindex="0">
+            <tr tabindex="0" onclick="window.location='{% url 'memo_bank_detail' item.id %}'">
               <td><div>{{ forloop.counter }}</div></td>
               <td>{{ item.source_language }}</td>
               <td>{{ item.target_language }}</td>

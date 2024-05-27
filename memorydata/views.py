@@ -7,6 +7,16 @@ def user_certre(request):
 def memo_bank(request):
     return render(request, 'memo_bank.html')
 
+def memory_bank_detail(request, memory_bank_id):
+    memory_bank = memory_bank.objects.get(id=memory_bank_id)
+    try:
+        memory_bank_detail = MemoryBankDetail.objects.get(memory_bank=memory_bank)
+    except MemoryBankDetail.DoesNotExist:
+        memory_bank_detail = None
+    
+    return render(request, 'memory_bank_detail.html', {'memory_bank': memory_bank, 'memory_bank_detail': memory_bank_detail})
+
+
 def searchMemoryData(request):
     if request.method == 'GET':
         query_memory = request.GET.get('query_memory', '')

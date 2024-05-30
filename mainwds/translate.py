@@ -9,6 +9,7 @@ import requests
 import random
 import json
 from hashlib import md5
+import re
 
 # Set your own appid/appkey.
 appid = '20240422002032134'
@@ -22,12 +23,24 @@ endpoint = 'http://api.fanyi.baidu.com'
 path = '/api/trans/vip/translate'
 url = endpoint + path
 
+def preprocess_text(text):
+    # 使用正则表达式匹配句子
+    sentences = re.findall(r'[^。！？]*[。！？]+', text)
 
+    # 在每个句子后面添加换行符
+    processed_text = '\n'.join([sentence.strip() for sentence in sentences])
+
+    return processed_text
 def trans(file_path):
 
-    f = open(file_path,encoding='utf-8')
-    query = f.read()
+    f = open(file_path, encoding='utf-8')
+    oldtext = f.read()
     f.close()
+    query = preprocess_text(oldtext)
+
+    # f = open(file_path,encoding='utf-8')
+    # query = f.read()
+    # f.close()
 
 
     # Generate salt and sign

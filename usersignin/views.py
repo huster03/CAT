@@ -9,8 +9,11 @@ from docx import Document
 from mainwds.translation import connect
 from mainwds import translate
 from mainwds.views import get_translation_data
-from memorydata.models import Memorydatatable
-from specialdata.models import Specialdatatable
+from .models import User
+from memorydata.models import MemoryBankDetail
+from specialdata.models import TermBankList
+import os
+from mainwds import translate
 from .models import TextTranslationPart
 from .models import User
 
@@ -21,55 +24,43 @@ class UserForm(forms.Form):
     email = forms.EmailField(label='邮箱')
 
 
+from CAT import settings
+# Create your views here.
 class UploadFileForm(forms.Form):
     file = forms.FileField()
+
+def get_project_infos_for_user(username):
+    return TextTranslationPart.objects.filter(username=username) \
+                          .values('project_name', 'created_at') \
+                          .distinct()
 
 
 def regist(request):
     if request.method == 'POST':
-        userform = UserForm(request.POST)
-        if userform.is_valid():
-            username = userform.cleaned_data['username']
-            password = userform.cleaned_data['password']
-            email = userform.cleaned_data['email']
-            user = User.objects.create(username=username, password=password, email=email)
-            Memorydatatable.objects.create(user=user)
-            Specialdatatable.objects.create(user=user)
-            user.save()
-        return HttpResponse('regist success!!!')
-    else:
-        userform = UserForm()
-    return render(request, 'regist.html', {'userform': userform})
-
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = User.objects.create(username=username,password=password)
+        MemoryBankDetail.objects.create(user = user)
+        TermBankList.objects.create(user = user)
+        user.save()
+        return redirect('/login')
+    return render(request,'register.html')
 
 def login(request):
     if request.method == 'POST':
-        userform = UserForm(request.POST)
-        if userform.is_valid():
-            username = userform.cleaned_data['username']
-            password = userform.cleaned_data['password']
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        flag = User.objects.filter(username__exact=username,password__exact=password)
+        if flag:
+            request.session['username'] = username
+            return redirect('/user_centre')
+        else:
+            return HttpResponse('用户名或密码错误,请重新登录')
+    return render(request,'login.html')
+def user_centre(request):
+    username = request.session.get('username')
 
-            flag = User.objects.filter(username__exact=username, password__exact=password)
-
-            if flag:
-                request.session['username'] = username
-                if get_translation_data(username) != (None, None):
-                    print(get_translation_data(username))
-                    return redirect('/main_display')
-                else:
-                    return redirect('/uploadFile')
-            else:
-                return HttpResponse('用户名或密码错误,请重新登录')
-
-    else:
-        userform = UserForm()
-    return render(request, 'login.html', {'userform': userform})
-
-
-def upload_file(request):
-    form = UploadFileForm()
     if request.method == 'POST':
-        username = request.session.get('username')
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             uploaded_file = request.FILES['file']
@@ -110,4 +101,12 @@ def upload_file(request):
                     target_text=target[i]
                 )
             return redirect('/main_display/')
-    return render(request, 'uploadFile.html', {'form': form})
+    else:
+        form = UploadFileForm()
+
+    project_infos = get_project_infos_for_user(username)
+
+    return render(request, 'user_centre.html', {
+        'form': form,
+        'project_infos': project_infos
+    })

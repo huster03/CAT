@@ -60,7 +60,9 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR,'usersignin/templates'),
-            os.path.join(BASE_DIR,'mainwds/templates')
+            os.path.join(BASE_DIR,'mainwds/templates'),
+            os.path.join(BASE_DIR,'specialdata/templates'),
+            os.path.join(BASE_DIR,'memorydata/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -134,11 +136,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
     BASE_DIR / 'FRONT END' / 'CSS',
     BASE_DIR / 'FRONT END' / 'CSS' / 'general',
+    BASE_DIR / 'FRONT END',
 ]
 
 # Default primary key field type

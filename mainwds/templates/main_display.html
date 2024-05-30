@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'general/font.css' %}">
     <link rel="stylesheet" href="{% static 'general/module.css' %} ">
     <link rel="stylesheet" href="{% static 'general/table.css' %} ">
-    <link rel="stylesheet" href="{% static 'general/translate.css' %} ">
+    <link rel="stylesheet" href="{% static 'translateNew.css' %} ">
     <script>
         function getTranslatedContent() {
           // 获取所有class为"translated-textarea"的元素
@@ -76,7 +76,7 @@
         <div class="right">
             <div>
                 <a href="user_centre.html" target="_blank">
-                <div class="profile"><img src="../../FRONT END/profile image.jpg" alt="前往用户中心"/></div>
+                <div class="profile"><img src="{% static 'profile image.jpg' %}" alt="前往用户中心"/></div>
                 <h1>{{username}}&ensp;</h1>
                 </a>
             </div>
@@ -153,6 +153,7 @@
                 for (var i = 0; i < translatedSentences.length; i++) {
                     var translationContainer = document.createElement("tr");
                     translationContainer.className = "translation-container";
+                    translationContainer.setAttribute('tabindex', '0');
 
                     var lable_td = document.createElement("td");
                     var original_td = document.createElement("td");
@@ -182,27 +183,5 @@
                 }
         </script>
 {% endif %}
-<!--<form action="{% url 'main_display' %}" method="post">-->
-<!--    {% csrf_token %}-->
-<!--    <input type="text" name="add_memory_source">source-->
-<!--    <input type="text" name="add_memory_target">target-->
-<!--    <button type="submit">添加翻译记忆库</button>-->
-<!--</form>-->
-<!--<form action="{% url 'main_display' %}" method="get">-->
-<!--     {% csrf_token %}-->
-<!--    <input type="text" name="add_special_source">source-->
-<!--    <input type="text" name="add_special_target">target-->
-<!--    <button type="submit">添加术语记忆库</button>-->
-<!--</form>-->
-<!--<div id="source">{{source}}</div>-->
-<!--<div id="target">{{target}}</div>-->
-<!--<form action="{% url 'main_display' %}" method="get">-->
-<!--  <input type="text" name="query_memory">-->
-<!--  <button type="submit">Search</button>-->
-<!--</form>-->
-<!--<form action="{% url 'main_display' %}" method="get">-->
-<!--  <input type="text" name="query_special">-->
-<!--  <button type="submit">Search</button>-->
-<!--</form>-->
 </body>
 </html>

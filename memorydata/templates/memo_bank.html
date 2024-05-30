@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="CSS/general/module.css"/>
+    <link rel="stylesheet" href="CSS/general/button.css"/>
+    <link rel="stylesheet" href="CSS/general/font.css"/>
+    <link rel="stylesheet" href="CSS/general/table.css"/>
+    
+    <link rel="stylesheet" href="CSS/bank.css"/>
+    <title>记忆库界面</title>
+  </head>
+
+  <body>
+
+    <!--用户栏-->
+    <div class="user memo">
+      <div class="in">
+        <div class="left">
+          <h1>记忆库</h1>
+        </div>
+        <div class="right">
+          <div>
+            <div><a href="user_centre.html" target="_blank">
+              <div class="profile"><img src="profile image.jpg" alt="前往用户中心"/></div>
+              <h1>UserName&ensp;</h1>
+            </a></div> 
+          </div>    
+          <div><button>帮助</button></div>
+        </div>
+      </div>
+    </div>
+    
+    <!--工具栏-->
+    <div class="tool">
+      <div class="in">
+        <div class="left">
+          <div class="left">
+            <div><button>导入</button></div>&ensp;
+            <div><button onclick="createMemoryBank()">新建</button></div>
+          </div>
+          <div class="right">
+            <div><button>置顶</button></div>&ensp;
+            <div><button>改名</button></div>&ensp;
+            <div><button>复制</button></div>&ensp;
+            <div><button>导出</button></div>&ensp;
+            <div><button class="red">删除</button></div>&ensp;
+          </div>
+        </div>
+        <div class="right">
+          <div><a href="{% url 'memory_bank_list' %}" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
+          <div class="disable"><button class="bank memo">记忆库</button></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function createMemoryBank() {
+        // 使用 Fetch API 发送 POST 请求给后端
+  fetch('/create_memory_bank', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name: 'New Memory Bank' }) // 传递新记忆库的名称等参数
+  })
+  .then(response => {
+    if (response.ok) {
+      // 请求成功，进行页面更新等操作
+      console.log('新建记忆库成功！');
+    } else {
+      // 请求失败，处理失败情况
+      console.error('新建记忆库失败');
+    }
+  })
+  .catch(error => {
+    // 处理请求过程中的错误
+    console.error('请求创建记忆库时出现错误:', error);
+  });
+      }
+    </script>
+
+    <div class="main">
+      <div class="in">
+
+        <!--记忆库列表-->
+        <div class="left memo">
+          <div class="box"><table>
+            <tr>
+              <th scope="col">&ensp;</th>
+              <th scope="col">术语库名称</th>
+              <th scope="col">源语言</th>
+              <th scope="col">目标语言</th>
+              <th scope="col">词条数量</th>
+            </tr>
+            {% for item in memory_banks %}
+            <tr tabindex="0" >
+              <td><div>{{ forloop.counter }}</div></td>
+              <td><a href="{% url 'memory_bank_detail' item.id %}" target="_blank">{{ item.name }}</a></td>
+              <td>{{ item.source_language }}</td>
+              <td>{{ item.target_language }}</td>
+              <td>{{ item.entry_count }}</td>
+            </tr>
+            {% endfor %}
+          </table></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

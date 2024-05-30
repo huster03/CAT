@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>用户界面</title>
+  </head>
+
+  <body>
+
+    <!--用户栏-->
+    <div class="user">
+      <div class="in">
+        <div class="left">
+          <h1>用户中心</h1>
+        </div>
+        <div class="right">
+          <div><button>帮助</button></div>
+        </div>
+      </div>
+    </div>
+    
+    <!--工具栏-->
+    <div class="tool">
+      <div class="in">
+        <div class="left">
+          <div class="left">
+            <div><button>导入</button></div>
+          </div>
+          <div class="right">
+            <div><button>置顶</button></div>&ensp;
+            <div><button>改名</button></div>&ensp;
+            <div><button>复制</button></div>&ensp;
+            <div><button>导出</button></div>&ensp;
+            <div><button class="red">删除</button></div>
+          </div>
+        </div>
+        <div class="right">
+          <div><a href="tech_bank.html" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
+          <div><a href="memo_bank.html" target="_blank"><button class="bank memo">记忆库</button></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="in">
+
+        <!--文档选择表-->
+        <div class="left">
+          <div class="uploadFile">
+            <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form }}
+                  <button type="submit">上传</button>
+            </form>
+          </div>
+          <div class="box"><table>
+            <tr>
+              <th class="doc_name">文档名称</th>
+              <th class="upload">导入日期</th>
+            </tr>
+            {% for project_info in project_infos %}
+              <tr tabindex="0"><td><a href="{% url 'translation_view' project_info.project_name %}">{{ project_info.project_name }}</a></td><td>{{project_info.create_at}}</td></tr>
+            {% endfor %}
+          </table></div>
+        </div>
+
+        <!--搜索栏-->
+       <div class="right">
+          <div class="profile"><img src="profile image.jpg" alt="用户头像"/></div>
+          <div class="name">
+            <h3>{{username}}</h3>
+            <div class="introduction">用户资料...</div>
+          </div>
+          <div><button class="long">编辑资料</button></div>
+          <hr>
+          <div><button class="long red">清空编辑记录</button></div>
+          <div><button class="long red">注销账户</button></div>
+          <div><button class="long red">退出登录</button></div>
+          <hr>
+          <h4>搜索</h4>
+          <div><button class="long info">搜索</button></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

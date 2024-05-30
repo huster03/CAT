@@ -1,0 +1,59 @@
+/*辅助翻译栏*/
+th:nth-child(1)
+{
+    width: 30px;
+}
+
+th:nth-child(2)
+{
+    width: calc(((100vw - 200px) * 0.7 - 100px - 30px) * 0.5);
+}
+
+th:nth-child(3)
+{
+    width: calc(((100vw - 200px) * 0.7 - 100px - 30px) * 0.5);
+    padding-left: 25px;
+}
+
+td:nth-child(2)
+{
+    border-right: dashed #9A9A9A;
+    padding-right: 8px;
+}
+
+td:nth-child(3)
+{
+    padding-left: 25px;
+    padding-right: 8px;
+}
+
+td:nth-child(2) > h5::selection,
+td:nth-child(3) > h5::selection
+{
+    background-color: #F0850260;
+}
+
+/*翻译结果框*/
+.result
+{
+    box-sizing: border-box;
+
+    text-align: center;
+    width: calc((100vw - 200px) * 0.3 - 25px - 50px);
+    min-width: calc((1200px - 200px) * 0.3 - 25px - 50px);
+    max-width: calc((3840px - 200px) * 0.3 - 25px - 50px);
+    height: calc(100% - 25px - (28px + 8px) * 4 - 50px);
+    min-height: calc(675px - 200px - 25px - 25px - (28px + 8px) * 4 - 50px);
+    max-height: calc(2160px - 200px - 25px - 25px - (28px + 8px) * 4 - 50px);
+    margin-bottom: 8px;
+
+    background-color: #FFF;
+    border: solid #9A9A9A;
+    border-radius: 5px;
+}
+
+textarea
+{
+    width: 100%;
+    font-weight: 900%;
+}

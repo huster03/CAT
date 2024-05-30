@@ -4,7 +4,7 @@ from . import views
 admin.autodiscover()
 
 urlpatterns = [
-    path('uploadFile/',views.upload_file),
-    path('login/', views.login),
-    path('regist/', views.regist),
+    path('login/', views.login , name = 'login'),
+    path('regist/', views.regist,name = 'regist'),
+    path('uer_centre/', views.user_centre, name='user_centre'),
 ]

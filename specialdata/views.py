@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import TermBankList, TermBankDetail
+from .models import TermBankList ,TermBankItem
 from django.core.paginator import Paginator
 # Create your views here.
 def term_bank_list(request):
@@ -24,7 +24,7 @@ def add_term_bank(request, user_id):
     if request.method == "POST" and 'add_special_source' in request.POST:
         add_special_source = request.POST.get('add_special_source')
         add_special_target = request.POST.get('add_special_target')
-        addedSpecialData = TermBankDetail(source_text=add_special_source, target_text=add_special_target,
+        addedSpecialData = TermBankItem(source_text=add_special_source, target_text=add_special_target,
                                             user_id=user_id)
         addedSpecialData.save()
     # 返回搜索结果
@@ -34,7 +34,7 @@ def add_term_bank(request, user_id):
 def term_bank_detail(request, term_bank_id):
     # 获取术语库详情
     term_bank = TermBankList.objects.get(id=term_bank_id)
-    term_bank_details = TermBankDetail.objects.filter(term_bank=term_bank)
+    term_bank_details = TermBankItem.objects.filter(term_bank=term_bank)
     paginator = Paginator(term_bank_details, 20)  # 在这里假设一页显示20条数据
     page = request.GET.get('page')
     term_bank_page = paginator.get_page(page)

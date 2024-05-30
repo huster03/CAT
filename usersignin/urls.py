@@ -6,5 +6,5 @@ admin.autodiscover()
 urlpatterns = [
     path('login/', views.login , name = 'login'),
     path('regist/', views.regist,name = 'regist'),
-    path('uer_centre/', views.user_centre, name='user_centre'),
+    path('user_centre/', views.user_centre, name='user_centre'),
 ]

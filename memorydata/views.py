@@ -16,7 +16,7 @@ def memory_bank_list(request):
     return render(request, 'memory_bank.html', {'memory_banks': memory_banks})
 
 def memory_bank_detail(request, memory_bank_id):
-    memory_bank = memory_bank.objects.get(id=memory_bank_id)
+    memory_bank = MemoryBankDetail.objects.get(id=memory_bank_id)
     memory_bank_detail = MemoryBankDetail.objects.filter(memory_bank=memory_bank)
     paginator = Paginator(memory_bank_detail, 20)  # 在这里假设一页显示20条数据
     page = request.GET.get('page')

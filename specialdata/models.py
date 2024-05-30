@@ -6,13 +6,14 @@ class TermBankList(models.Model):
     source_language = models.TextField()
     target_language = models.TextField()
     term_bank = models.TextField()
-    number_of_terms = models.IntegerField()
+    number_of_terms = models.IntegerField(default = 0)
     user = models.ForeignKey('usersignin.User', on_delete=models.CASCADE)
 
-class TermBankDetail(models.Model):
+class TermBankItem(models.Model):
+    objects = models.Manager()
     term_bank_name = models.TextField()
     source_text = models.TextField()
     target_text = models.TextField()
     resource = models.TextField()
-    term_bank = models.ForeignKey(TermBankList, on_delete=models.CASCADE)
+    term_bank = models.ForeignKey('TermBankList', on_delete=models.CASCADE , default = 1)
     user = models.ForeignKey('usersignin.User', on_delete=models.CASCADE)

@@ -3,12 +3,13 @@ from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django import forms
 from .models import User
-from memorydata.models import MemoryBankDetail
-from specialdata.models import TermBankList
+from memorydata.models import MemoryBankDetail , MemoryBankList
+from specialdata.models import TermBankList , TermBankItem
 import os
 from mainwds import translate
 from .models import TextTranslationPart
 from CAT import settings
+import datetime
 # Create your views here.
 class UploadFileForm(forms.Form):
     file = forms.FileField()
@@ -22,8 +23,10 @@ def regist(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = User.objects.create(username=username,password=password)
-        MemoryBankDetail.objects.create(user = user)
-        TermBankList.objects.create(user = user)
+        termbanklist = TermBankList.objects.create(user = user)
+        memorybanklist = MemoryBankList.objects.create(user = user)
+        MemoryBankDetail.objects.create(user = user , memory_bank = memorybanklist)
+        TermBankItem.objects.create(user = user , term_bank = termbanklist)
         user.save()
         return redirect('/login')
     return render(request,'register.html')
@@ -57,7 +60,9 @@ def user_centre(request):
                     username=username,
                     part_index=i,
                     source_text=source[i],
-                    target_text=target[i]
+                    target_text=target[i],
+                    project_name = uploaded_file.name,
+                    create_at = datetime.datetime.now()
                 )
             return redirect('/main_display/')
     else:
@@ -67,5 +72,6 @@ def user_centre(request):
 
     return render(request, 'user_centre.html', {
         'form': form,
-        'project_infos': project_infos
+        'project_infos': project_infos,
+        'username' : username,
     })

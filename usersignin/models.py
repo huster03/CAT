@@ -11,7 +11,7 @@ class TextTranslationPart(models.Model):
     objects = models.Manager()
     username = models.CharField(max_length=100)
     part_index = models.IntegerField()
-    project_name = models.TextField
+    project_name = models.TextField(default = "null")
     source_text = models.TextField()
     target_text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

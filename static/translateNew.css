@@ -54,6 +54,18 @@ td:nth-child(3) > h5::selection
 
 textarea
 {
+    border: none;
+    height: 250px;
     width: 100%;
     font-weight: 900%;
+    font-size: 15px;
+    resize: none;
+    line-height: 25px;
+    background-color: rgba(0,0,0,0);
+}
+
+.original-textarea
+{
+    pointer-events: none;
+    caret-color: transparent;
 }

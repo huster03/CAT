@@ -17,10 +17,22 @@ from CAT import settings
 class UploadFileForm(forms.Form):
     file = forms.FileField()
 
+
+from collections import OrderedDict
+
+
 def get_project_infos_for_user(username):
-    return TextTranslationPart.objects.filter(username=username) \
-                          .values('project_name', 'created_at') \
-                          .distinct()
+    project_infos = TextTranslationPart.objects.filter(username=username) \
+        .values('project_name', 'created_at')
+
+    # 使用 OrderedDict 去重并保留创建时间最早的项目
+    unique_projects = OrderedDict()
+    for project in project_infos:
+        project_name = project['project_name']
+        if project_name not in unique_projects:
+            unique_projects[project_name] = project
+
+    return list(unique_projects.values())
 
 
 def regist(request):
@@ -89,9 +101,8 @@ def user_centre(request):
                     project_name = uploaded_file.name,
                     source_text=source[i],
                     target_text=target[i],
-                    create_at = datetime.datetime.now()
+                    created_at = datetime.datetime.now()
                 )
-            return redirect('/main_display/')
 
     project_infos = get_project_infos_for_user(username)
 

@@ -121,6 +121,10 @@ body
     height: 50px;
 }
 
+form div
+{
+    display: inline-block;
+}
 /*主页框，分为左右两侧*/
 .main
 {

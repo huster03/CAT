@@ -12,12 +12,8 @@ from mainwds import translate
 from .models import TextTranslationPart
 from .models import User
 
-
-class UserForm(forms.Form):
-    username = forms.CharField(label='用户名', max_length=50)
-    password = forms.CharField(label='密码', widget=forms.PasswordInput())
-    email = forms.EmailField(label='邮箱')
-
+from CAT import settings
+# Create your views here.
 class UploadFileForm(forms.Form):
     file = forms.FileField()
 

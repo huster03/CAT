@@ -83,16 +83,19 @@ WSGI_APPLICATION = 'CAT.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'catpro',
         'HOST': '127.0.0.1',  # mysql的ip地址
         'PORT': 3306,
         'USER': 'root',
-        'PASSWORD': '123456'
-    }
-}
-
+        'PASSWORD': '123456',
+        'OPTIONS': {
+             'charset': 'utf8mb4',
+             'use_unicode': True,
+         },
+     }
+ }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

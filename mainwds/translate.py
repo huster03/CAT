@@ -34,6 +34,10 @@ def preprocess_text(text):
 def trans(file_path):
 
     f = open(file_path, encoding='utf-8')
+
+
+
+    
     oldtext = f.read()
     f.close()
     query = preprocess_text(oldtext)

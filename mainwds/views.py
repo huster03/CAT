@@ -23,12 +23,17 @@ def get_translation_data(username , project_name):
 def updateMysqldata(request,username , project_name):
     if request.META.get('CONTENT_TYPE') == 'application/json':
         translated_content = json.loads(request.body)
+        print(translated_content)
+        print(username)
+        print(project_name)
         parts = TextTranslationPart.objects.filter(username=username,project_name = project_name)
+        print(parts)
         for i, part in enumerate(parts):
             part.target_text = translated_content[i]
             part.save()
     else:
         pass
+
 def display_translation(request, username ,project_name):
     form = UploadFileForm()
     source_text_lists, target_text_lists = get_translation_data(username , project_name)
@@ -42,6 +47,7 @@ def display_translation(request, username ,project_name):
 
 
 def main_display(request,project_name):
+    print("111")
     username = request.session.get('username')
     updateMysqldata(request,username , project_name)
     context.update(display_translation(request, username,project_name))

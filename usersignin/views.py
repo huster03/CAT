@@ -6,8 +6,8 @@ from django import forms
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from docx import Document
-from memorydata.models import MemoryBankDetail
-from specialdata.models import TermBankList
+from memorydata.models import MemoryBankDetail , MemoryBankList
+from specialdata.models import TermBankList,TermBankItem
 from mainwds import translate
 from .models import TextTranslationPart
 from .models import User
@@ -40,8 +40,10 @@ def regist(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = User.objects.create(username=username,password=password)
-        MemoryBankDetail.objects.create(user = user)
-        TermBankList.objects.create(user = user)
+        termbank = TermBankList.objects.create(user=user)
+        memorybank = MemoryBankList.objects.create(user=user)
+        MemoryBankDetail.objects.create(user=user,memory_bank=memorybank)
+        TermBankItem.objects.create(user=user,term_bank=termbank)
         user.save()
         return redirect('/login')
     return render(request,'register.html')

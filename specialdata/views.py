@@ -2,13 +2,15 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .models import TermBankList ,TermBankItem
 from django.core.paginator import Paginator
+from usersignin.models import User
 # Create your views here.
 def term_bank_list(request):
-    # 获取术语库列表
-    term_banks = TermBankList.objects.all()
-
+    username = request.session.get('username')
+    user = User.objects.get(username=username)
+    user_id = user.id
+    term_banks = TermBankList.objects.filter(user_id = user_id)
     # 将术语库列表传递给模板
-    return render(request, 'tech_bank.html', {'term_banks': term_banks})
+    return render(request, 'tech_bank.html', {'term_banks': term_banks , 'username':username})
 
 
 def search_term_bank(request):
@@ -33,11 +35,12 @@ def add_term_bank(request, user_id):
 
 def term_bank_detail(request, term_bank_id):
     # 获取术语库详情
-    term_bank = TermBankList.objects.get(id=term_bank_id)
-    term_bank_details = TermBankItem.objects.filter(term_bank=term_bank)
-    paginator = Paginator(term_bank_details, 20)  # 在这里假设一页显示20条数据
-    page = request.GET.get('page')
-    term_bank_page = paginator.get_page(page)
-
+    username = request.session.get('username')
+    user = User.objects.get(username=username)
+    user_id = user.id
+    term_bank_detail = TermBankItem.objects.filter(term_bank_id=term_bank_id,user_id = user_id)
+    # paginator = Paginator(term_bank_details, 20)  # 在这里假设一页显示20条数据
+    # page = request.GET.get('page')
+    # term_bank_page = paginator.get_page(page)
     # 将术语库详情传递给模板
-    return render(request, 'tech_detail.html', {'term_bank': term_bank, 'term_bank_details': term_bank_details, 'term_bank_page': term_bank_page})
+    return render(request, 'tech_detail.html', {'term_bank_detail': term_bank_detail,'username':username})

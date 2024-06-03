@@ -57,7 +57,8 @@
 
         <!--术语库列表-->
         <div class="left tech">
-          <div class="box"><table>
+          <div class="box">
+            <table>
             <tr>
               <th scope="col">&ensp;</th>
               <th scope="col">术语库名称</th>
@@ -66,9 +67,10 @@
               <th scope="col">词条数量</th>
             </tr>
             {% for term_bank in term_banks %}
-            <tr tabindex="0"><td><div>{{ forloop.counter }}</div></td><td><a href="{% url 'term_bank_detail' term_bank.id %}"></a>{{ term_bank.name }}</td><td>{{ term_bank.source_lang }}</td><td>{{ term_bank.target_lang }}</td><td>{{ term_bank.term_count }}</td></tr>
+            <tr tabindex="0"><td><div>{{ forloop.counter }}</div></td><td><a href="{% url 'term_bank_detail' term_bank.id %}">{{ term_bank.term_bank }}</a></td><td>{{ term_bank.source_language }}</td><td>{{ term_bank.target_language }}</td><td>{{ term_bank.number_of_terms }}</td></tr>
             {% endfor %}
-          </table></div>
+          </table>
+          </div>
         </div>
 
         <!--搜索栏-->

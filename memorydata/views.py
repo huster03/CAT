@@ -6,23 +6,26 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils.decorators import method_decorator
 from datetime import datetime
+from usersignin.models import User
 
 # Create your views here.
 def user_certre(request):
     return render(request, 'user_centre.html')
 
 def memory_bank_list(request):
-    memory_banks = MemoryBankList.objects.all()
-    return render(request, 'memo_bank.html', {'memory_banks': memory_banks})
+    username = request.session.get('username')
+    user = User.objects.get(username=username)
+    user_id = user.id
+    memory_banks = MemoryBankList.objects.filter(user_id=user_id)
+    # 将术语库列表传递给模板
+    return render(request, 'memo_bank.html', {'memory_banks':memory_banks , 'username': username})
 
 def memory_bank_detail(request, memory_bank_id):
-    memory_bank = MemoryBankDetail.objects.get(id=memory_bank_id)
-    memory_bank_detail = MemoryBankDetail.objects.filter(memory_bank=memory_bank)
-    paginator = Paginator(memory_bank_detail, 20)  # 在这里假设一页显示20条数据
-    page = request.GET.get('page')
-    memory_bank_page = paginator.get_page(page)
-
-    return render(request, 'memo_detail.html', {'memory_bank': memory_bank, 'memory_bank_detail': memory_bank_detail, 'memory_bank_page': memory_bank_page})
+    username = request.session.get('username')
+    user = User.objects.get(username=username)
+    user_id = user.id
+    memory_bank_detail = MemoryBankDetail.objects.filter(memory_bank_id=memory_bank_id,user_id = user_id)
+    return render(request, 'memo_detail.html', {'memory_bank_detail': memory_bank_detail, 'username':username})
 
 
 def searchMemoryData(request):

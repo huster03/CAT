@@ -13,7 +13,7 @@ def user_certre(request):
 
 def memory_bank_list(request):
     memory_banks = MemoryBankList.objects.all()
-    return render(request, 'memory_bank.html', {'memory_banks': memory_banks})
+    return render(request, 'memo_bank.html', {'memory_banks': memory_banks})
 
 def memory_bank_detail(request, memory_bank_id):
     memory_bank = MemoryBankDetail.objects.get(id=memory_bank_id)
@@ -22,7 +22,7 @@ def memory_bank_detail(request, memory_bank_id):
     page = request.GET.get('page')
     memory_bank_page = paginator.get_page(page)
 
-    return render(request, 'memory_bank_detail.html', {'memory_bank': memory_bank, 'memory_bank_detail': memory_bank_detail, 'memory_bank_page': memory_bank_page})
+    return render(request, 'memo_detail.html', {'memory_bank': memory_bank, 'memory_bank_detail': memory_bank_detail, 'memory_bank_page': memory_bank_page})
 
 
 def searchMemoryData(request):

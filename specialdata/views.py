@@ -40,4 +40,4 @@ def term_bank_detail(request, term_bank_id):
     term_bank_page = paginator.get_page(page)
 
     # 将术语库详情传递给模板
-    return render(request, 'tech_bank_detail.html', {'term_bank': term_bank, 'term_bank_details': term_bank_details, 'term_bank_page': term_bank_page})
+    return render(request, 'tech_detail.html', {'term_bank': term_bank, 'term_bank_details': term_bank_details, 'term_bank_page': term_bank_page})

@@ -47,7 +47,7 @@
         </div>
         <div class="right">
           <div class="disable"><button class="bank tech">术语库</button></div>&ensp;
-          <div><a href="{% url 'memo_bank' %}" target="_blank"><button class="bank memo">记忆库</button></a></div>
+          <div><a href="/memo_bank/" target="_blank"><button class="bank memo">记忆库</button></a></div>
         </div>
       </div>
     </div>
@@ -68,11 +68,6 @@
             {% for term_bank in term_banks %}
             <tr tabindex="0"><td><div>{{ forloop.counter }}</div></td><td><a href="{% url 'term_bank_detail' term_bank.id %}"></a>{{ term_bank.name }}</td><td>{{ term_bank.source_lang }}</td><td>{{ term_bank.target_lang }}</td><td>{{ term_bank.term_count }}</td></tr>
             {% endfor %}
-            <tr tabindex="0"><td><div>1</div></td><td>医学库</td><td>中文</td><td>英文</td><td>1000</td></tr>
-            <tr tabindex="0"><td><div>2</div></td><td>医学库</td><td>英文</td><td>中文</td><td>1000</td></tr>
-            <tr tabindex="0"><td><div>3</div></td><td>地名库</td><td>英文</td><td>中文</td><td>200</td></tr>
-            <tr tabindex="0"><td><div>4</div></td><td>天文库</td><td>中文</td><td>西班牙文</td><td>800</td></tr>
-            <tr tabindex="0"><td><div>5</div></td><td>天文库</td><td>西班牙文</td><td>中文</td><td>800</td></tr>
           </table></div>
         </div>
 

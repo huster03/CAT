@@ -4,6 +4,8 @@ from django.shortcuts import render
 from usersignin.models import User
 from usersignin.models import  TextTranslationPart
 import json
+from .translation import connect
+from django.http import JsonResponse
 
 context = {}
 
@@ -53,3 +55,14 @@ def main_display(request,project_name):
     display_translation(request,username , project_name)
     context.update(display_translation(request, username,project_name))
     return render(request, 'main_display.html', context)
+
+
+def translate(request):
+    if request.method == 'POST':
+        word = request.POST.get('word')
+        response = connect(word)
+        data = json.loads(response)
+        translation = data['translation'][0]
+        print('1')
+        return JsonResponse({'result': translation})
+    return JsonResponse({'error': 'Invalid request method'})

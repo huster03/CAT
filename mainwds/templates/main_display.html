@@ -69,6 +69,27 @@
           return cookieValue;
         }
 
+          function translateWord() {
+            var searchInput = document.getElementById('search-input');
+            var resultDiv = document.getElementById('dictionary-search');
+
+            fetch('/translate/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}' // 添加 CSRF 令牌
+                },
+                body: 'word=' + encodeURIComponent(searchInput.value)
+            })
+            .then(response => response.json())
+            .then(data => {
+                resultDiv.textContent = data.result;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
         function updateMysqldata() {
           // 获取所有class为"translated-textarea"的元素
           var translatedTextareas = document.querySelectorAll('.translated-textarea');
@@ -125,7 +146,7 @@
         <div class="in">
           <div class="left">
             <div class="left">
-              <div><button class="highlight" onclick="updateMysqldata()">保存</button></div>&ensp;
+              <div><button>保存</button></div>&ensp;
               <div><button>撤回</button></div>&ensp;
               <div><button>恢复</button></div>&ensp;
               |&ensp;

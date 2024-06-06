@@ -17,11 +17,12 @@ appkey = '_sZ2qyebiTSSFwFM_G6K'
 
 # For list of language codes, please refer to `https://api.fanyi.baidu.com/doc/21`
 from_lang = 'zh'
-to_lang =  'en'
+to_lang = 'en'
 
 endpoint = 'http://api.fanyi.baidu.com'
 path = '/api/trans/vip/translate'
 url = endpoint + path
+
 
 def preprocess_text(text):
     # 使用正则表达式匹配句子
@@ -31,8 +32,9 @@ def preprocess_text(text):
     processed_text = '\n'.join([sentence.strip() for sentence in sentences])
 
     return processed_text
-def trans(file_path):
 
+
+def trans(file_path):
     f = open(file_path, encoding='utf-8')
 
 
@@ -45,7 +47,6 @@ def trans(file_path):
     # f = open(file_path,encoding='utf-8')
     # query = f.read()
     # f.close()
-
 
     # Generate salt and sign
     def make_md5(s, encoding='utf-8'):
@@ -64,9 +65,9 @@ def trans(file_path):
     string = json.dumps(result, indent=4, ensure_ascii=False)
     res = json.loads(string)["trans_result"]
     print(res)
-    source= []
+    source = []
     target = []
     for obj in res:
         source.append(obj["src"])
         target.append(obj["dst"])
-    return source,target
+    return source, target

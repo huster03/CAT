@@ -50,5 +50,6 @@ def main_display(request,project_name):
     print("111")
     username = request.session.get('username')
     updateMysqldata(request,username , project_name)
+    display_translation(request,username , project_name)
     context.update(display_translation(request, username,project_name))
     return render(request, 'main_display.html', context)

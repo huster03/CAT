@@ -68,6 +68,39 @@
           }
           return cookieValue;
         }
+
+        function updateMysqldata() {
+          // 获取所有class为"translated-textarea"的元素
+          var translatedTextareas = document.querySelectorAll('.translated-textarea');
+          // 创建一个数组存储所有翻译后textarea的值
+          var translatedContent = [];
+          // 遍历所有翻译后textarea,将它们的值添加到数组中
+          for (var i = 0; i < translatedTextareas.length; i++) {
+            translatedContent.push(translatedTextareas[i].value);
+          }
+          var jsonData = JSON.stringify(translatedContent);
+          // 获取当前 URL 的查询参数
+        const path = window.location.href;
+        // 发送 POST 请求
+        fetch(path, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+          },
+          body: jsonData
+        })
+        .then(response => response.json())
+        .then(data => {
+          // 处理响应数据
+          console.log(data.status);
+        })
+        .catch(error => {
+          // 处理错误
+          console.error('Error:', error);
+        });
+       }
+
     </script>
 </head>
 <body>
@@ -92,7 +125,7 @@
         <div class="in">
           <div class="left">
             <div class="left">
-              <div><button>保存</button></div>&ensp;
+              <div><button class="highlight" onclick="updateMysqldata()">保存</button></div>&ensp;
               <div><button>撤回</button></div>&ensp;
               <div><button>恢复</button></div>&ensp;
               |&ensp;

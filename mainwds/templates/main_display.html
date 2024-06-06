@@ -121,7 +121,6 @@
           console.error('Error:', error);
         });
        }
-
     </script>
 </head>
 <body>
@@ -146,8 +145,9 @@
         <div class="in">
           <div class="left">
             <div class="left">
-              <div><button>保存</button></div>&ensp;
-              <div><button>撤回</button></div>&ensp;
+              <div><button class="highlight" onclick="updateMysqldata()">保存</button></div>&ensp;
+              <div><button id="undo-button" class="highlight">撤回</button></div>&ensp;
+                <script src="{% static 'JavaScript/undo.js' %}"></script>
               <div><button>恢复</button></div>&ensp;
               |&ensp;
               <div><button>分割</button></div>&ensp;
@@ -157,7 +157,6 @@
               <div><button>下段</button></div>
             </div>
             <div class="right">
-              <div><button>预览</button></div>&ensp;
               <div><button class="highlight" onclick="getTranslatedContent()">导出</button></div>
             </div>
           </div>

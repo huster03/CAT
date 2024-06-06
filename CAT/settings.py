@@ -143,6 +143,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'FRONT END' / 'CSS',
     BASE_DIR / 'FRONT END' / 'CSS' / 'general',
     BASE_DIR / 'FRONT END',
+    BASE_DIR / 'FRONT END' / 'JavaScript',
 ]
 
 # Default primary key field type

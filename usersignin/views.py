@@ -11,6 +11,7 @@ from specialdata.models import TermBankList,TermBankItem
 from mainwds import translate
 from .models import TextTranslationPart
 from .models import User
+from django.http import HttpResponseRedirect
 
 from CAT import settings
 # Create your views here.
@@ -40,13 +41,17 @@ def regist(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = User.objects.create(username=username,password=password)
+        flag = User.objects.filter(username__exact=username)
+        if flag:
+            print("111")
+            return render(request,'register.html',{'username_exists':True})
         termbank = TermBankList.objects.create(user=user)
         memorybank = MemoryBankList.objects.create(user=user)
         MemoryBankDetail.objects.create(user=user,memory_bank=memorybank)
         TermBankItem.objects.create(user=user,term_bank=termbank)
         user.save()
         return redirect('/login')
-    return render(request,'register.html')
+    return render(request,'register.html',{'username_exists':False})
 
 def login(request):
     if request.method == 'POST':

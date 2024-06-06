@@ -90,6 +90,35 @@
     });
 }
     </script>
+
+    <script>
+        function matchStrings() {
+          var string1_element = document.getElementById('string_1');
+          var string2_element = document.getElementById('string_2');
+          var string1 = string1_element.value;
+          console.log(string1);
+         fetch('/ajax/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': '{{ csrf_token }}' // 添加 CSRF 令牌
+            },
+            body: 'string1=' + encodeURIComponent(string1)
+          })
+          .then(response => response.json())
+          .then(data => {
+            var topStrings = data.top_5_strings;
+            var resultText = '';
+            for (var i = 0; i < topStrings.length; i++) {
+              resultText += topStrings[i].string + ' (' + (topStrings[i].similarity_score * 100).toFixed(2) + '%)' + '\n';
+            }
+            string2_element.textContent = resultText ;
+          })
+          .catch(error => {
+            console.error(error);
+          });
+        }
+    </script>
 </head>
 <body>
 <!-- upload.html -->
@@ -154,15 +183,17 @@
          <div class="right">
             <h4>词典</h4>
              <div>
-                 <input type="text" class="long info" id="search-input">
+                 <input type="text" class="long info" id="search-input" placeholder="输入要翻译的中文术语">
                  <button onclick="translateWord()">搜索</button>
              </div>
-             <div><button class="long info">对应翻译</button></div>
+             <div><button class="long info" id="dictionary-search">对应翻译</button></div>
              <div><button type="submit" class="mid tech">保存到术语库</button></div>&ensp;
              <div><button type="submit" class="mid memo">保存到记忆库</button></div>
-            <div class="result" id="dictionary-search">
-                搜索结果...
-            </div>
+             <div>
+                 <input type="text" class="long info" id="string_1" placeholder="输入模糊匹配内容">
+                 <button onclick="matchStrings()">匹配</button>
+             </div>
+             <div><button class="long info" id="string_2">匹配结果</button></div>
           </div>
         </div>
       </div>

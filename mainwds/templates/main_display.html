@@ -63,6 +63,27 @@
           }
           return cookieValue;
         }
+
+  function translateWord() {
+    var searchInput = document.getElementById('search-input');
+    var resultDiv = document.getElementById('dictionary-search');
+
+    fetch('/translate/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': '{{ csrf_token }}' // 添加 CSRF 令牌
+        },
+        body: 'word=' + encodeURIComponent(searchInput.value)
+    })
+    .then(response => response.json())
+    .then(data => {
+        resultDiv.textContent = data.result;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
     </script>
 </head>
 <body>
@@ -128,8 +149,8 @@
          <div class="right">
             <h4>词典</h4>
              <div>
-                 <input type="text" class="long info">
-                 <button>搜索</button>
+                 <input type="text" class="long info" id="search-input">
+                 <button onclick="translateWord()">搜索</button>
              </div>
              <div><button class="long info">对应翻译</button></div>
              <div><button type="submit" class="mid tech">保存到术语库</button></div>&ensp;
@@ -140,6 +161,7 @@
           </div>
         </div>
       </div>
+
 {% if source_text_list and target_text_list %}
         <script>
                 // 原文句子数组

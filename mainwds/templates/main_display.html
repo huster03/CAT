@@ -134,7 +134,7 @@
         </div>
         <div class="right">
             <div>
-                <a href="user_centre.html" target="_blank">
+                <a href="{% url 'user_centre'%}" target="_blank">
                 <div class="profile"><img src="{% static 'profile image.jpg' %}" alt="前往用户中心"/></div>
                 <h1>{{username}}&ensp;</h1>
                 </a>
@@ -162,8 +162,8 @@
             </div>
           </div>
           <div class="right">
-            <div><a href="/term_bank/" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
-            <div><a href="/memo_bank/" target="_blank"><button class="bank memo">记忆库</button></a></div>
+              <div><a href="{% url 'term_bank'%}" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
+              <div><a href="{% url 'memo_bank'%}" target="_blank"><button class="bank memo">记忆库</button></a></div>
           </div>
         </div>
       </div>

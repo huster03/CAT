@@ -1,13 +1,14 @@
 <!doctype html>
+{%load static%}
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="{% static 'CSS/general/module.css' %}"/>
-    <link rel="stylesheet" href="{% static 'CSS/general/button.css' %}"/>
-    <link rel="stylesheet" href="{% static 'CSS/general/font.css' %}"/>
-    <link rel="stylesheet" href="{% static 'CSS/general/table.css' %}"/>
-    
-    <link rel="stylesheet" href="{% static 'CSS/bank.css' %}"/>
+      <link rel="stylesheet" href="{% static 'general/button.css' %}">
+      <link rel="stylesheet" href="{% static 'general/font.css' %}">
+      <link rel="stylesheet" href="{% static 'general/module.css' %} ">
+      <link rel="stylesheet" href="{% static 'general/table.css' %} ">
+      <link rel="stylesheet" href="{% static 'translateNew.css' %} ">
+      <link rel="stylesheet" href="{% static 'user_centre.css' %} ">
     <title>术语库详情</title>
   </head>
 
@@ -23,7 +24,7 @@
           <div>
             <div><a href="{% url 'user_centre' %}" target="_blank">
               <div class="profile"><img src="{% static 'profile/image.jpg' %}" alt="前往用户中心"/></div>
-              <h1>UserName&ensp;</h1>
+              <h1>{{username}}&ensp;</h1>
             </a></div> 
           </div>    
           <div><button>帮助</button></div>
@@ -63,41 +64,34 @@
               <th scope="col">&ensp;</th>
               <th scope="col">源语言</th>
               <th scope="col">目标语言</th>
-              <th scope="col">调用次数</th>
             </tr>
             {% for item in term_bank_detail %}
-            <tr tabindex="0"><td><div>{{ forloop.counter }}</div></td><td>{{ item.source_language }}</td><td>{{ item.target_language }}</td><td>{{ item.call_times }}</td></tr>
+            <tr tabindex="0"><td><div>{{ forloop.counter }}</div></td><td>{{ item.source_text }}</td><td>{{ item.target_text }}</td></tr>
             {% endfor %}
             </table></div>
-          <div class="left">
-            {% if term_bank_detail.has_previous %}
-      <a href="?page=1"><button class="triple">首页</button></a>
-      <a href="?page={{ term_bank_detail.previous_page_number }}"><button class="triple">上一页</button></a>
-    {% endif %}
-    <div>第 {{ term_bank_detail.number }} 页&ensp;</div>
-    {% if term_bank_detail.has_next %}
-      <a href="?page={{ term_bank_detail.next_page_number }}"><button class="triple">下一页</button></a>
-      <a href="?page={{ term_bank_detail.paginator.num_pages }}"><button class="triple">末页</button></a>
-    {% endif %}
-    <form method="get" action="">
-      <input type="number" name="page" min="1" max="{{ term_bank_detail.paginator.num_pages }}" value="{{ term_bank_detail.number }}">
-      <input type="submit" value="跳转">
-    </form>
-  </div>
-  <div class="right">共 {{ term_bank_detail.paginator.num_pages }} 页</div>
-</div>
+<!--          <div class="left">-->
+<!--            {% if term_bank_detail.has_previous %}-->
+<!--      <a href="?page=1"><button class="triple">首页</button></a>-->
+<!--      <a href="?page={{ term_bank_detail.previous_page_number }}"><button class="triple">上一页</button></a>-->
+<!--    {% endif %}-->
+<!--    <div>第 {{ term_bank_detail.number }} 页&ensp;</div>-->
+<!--    {% if term_bank_detail.has_next %}-->
+<!--      <a href="?page={{ term_bank_detail.next_page_number }}"><button class="triple">下一页</button></a>-->
+<!--      <a href="?page={{ term_bank_detail.paginator.num_pages }}"><button class="triple">末页</button></a>-->
+<!--    {% endif %}-->
+<!--    <form method="get" action="">-->
+<!--      <input type="number" name="page" min="1" max="{{ term_bank_detail.paginator.num_pages }}" value="{{ term_bank_detail.number }}">-->
+<!--      <input type="submit" value="跳转">-->
+<!--    </form>-->
+<!--  </div>-->
+<!--  <div class="right">共 {{ term_bank_detail.paginator.num_pages }} 页</div>-->
+        </div>
 
         <!--搜索栏-->
        <div class="right">
-          <form action="{% url 'tech_detail' %}" method="get">
+          <form action="{% url 'term_detail' %}" method="get">
             <input type="text" name="query_special">
            <button type="submit">Search</button>
-          </form>
-          <form action="{% url 'main_display' %}" method="get">
-               {% csrf_token %}
-              <input type="text" name="add_special_source">source
-              <input type="text" name="add_special_target">target
-              <button type="submit">添加术语记忆库</button>
           </form>
         </div>
       </div>

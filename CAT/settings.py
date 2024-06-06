@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'CAT.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'webmysql',
+        'NAME': 'catpro',
         'HOST': '127.0.0.1',  # mysql的ip地址
         'PORT': 3306,
         'USER': 'root',
@@ -143,6 +143,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'FRONT END' / 'CSS',
     BASE_DIR / 'FRONT END' / 'CSS' / 'general',
     BASE_DIR / 'FRONT END',
+    BASE_DIR / 'FRONT END' / 'JavaScript',
 ]
 
 # Default primary key field type

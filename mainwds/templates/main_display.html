@@ -69,26 +69,58 @@
           return cookieValue;
         }
 
-  function translateWord() {
-    var searchInput = document.getElementById('search-input');
-    var resultDiv = document.getElementById('dictionary-search');
+          function translateWord() {
+            var searchInput = document.getElementById('search-input');
+            var resultDiv = document.getElementById('dictionary-search');
 
-    fetch('/translate/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-CSRFToken': '{{ csrf_token }}' // 添加 CSRF 令牌
-        },
-        body: 'word=' + encodeURIComponent(searchInput.value)
-    })
-    .then(response => response.json())
-    .then(data => {
-        resultDiv.textContent = data.result;
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
+            fetch('/translate/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}' // 添加 CSRF 令牌
+                },
+                body: 'word=' + encodeURIComponent(searchInput.value)
+            })
+            .then(response => response.json())
+            .then(data => {
+                resultDiv.textContent = data.result;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function updateMysqldata() {
+          // 获取所有class为"translated-textarea"的元素
+          var translatedTextareas = document.querySelectorAll('.translated-textarea');
+          // 创建一个数组存储所有翻译后textarea的值
+          var translatedContent = [];
+          // 遍历所有翻译后textarea,将它们的值添加到数组中
+          for (var i = 0; i < translatedTextareas.length; i++) {
+            translatedContent.push(translatedTextareas[i].value);
+          }
+          var jsonData = JSON.stringify(translatedContent);
+          // 获取当前 URL 的查询参数
+        const path = window.location.href;
+        // 发送 POST 请求
+        fetch(path, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+          },
+          body: jsonData
+        })
+        .then(response => response.json())
+        .then(data => {
+          // 处理响应数据
+          console.log(data.status);
+        })
+        .catch(error => {
+          // 处理错误
+          console.error('Error:', error);
+        });
+       }
     </script>
 
     <script>
@@ -130,7 +162,7 @@
         </div>
         <div class="right">
             <div>
-                <a href="user_centre.html" target="_blank">
+                <a href="{% url 'user_centre'%}" target="_blank">
                 <div class="profile"><img src="{% static 'profile image.jpg' %}" alt="前往用户中心"/></div>
                 <h1>{{username}}&ensp;</h1>
                 </a>
@@ -142,8 +174,9 @@
         <div class="in">
           <div class="left">
             <div class="left">
-              <div><button>保存</button></div>&ensp;
-              <div><button>撤回</button></div>&ensp;
+              <div><button class="highlight" onclick="updateMysqldata()">保存</button></div>&ensp;
+              <div><button id="undo-button" class="highlight">撤回</button></div>&ensp;
+                <script src="{% static 'JavaScript/undo.js' %}"></script>
               <div><button>恢复</button></div>&ensp;
               |&ensp;
               <div><button>分割</button></div>&ensp;
@@ -153,13 +186,12 @@
               <div><button>下段</button></div>
             </div>
             <div class="right">
-              <div><button>预览</button></div>&ensp;
               <div><button class="highlight" onclick="getTranslatedContent()">导出</button></div>
             </div>
           </div>
           <div class="right">
-            <div><a href="/term_bank/" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
-            <div><a href="/memo_bank/" target="_blank"><button class="bank memo">记忆库</button></a></div>
+              <div><a href="{% url 'term_bank'%}" target="_blank"><button class="bank tech">术语库</button></a></div>&ensp;
+              <div><a href="{% url 'memo_bank'%}" target="_blank"><button class="bank memo">记忆库</button></a></div>
           </div>
         </div>
       </div>
@@ -183,8 +215,13 @@
          <div class="right">
             <h4>词典</h4>
              <div>
+<<<<<<< HEAD
                  <input type="text" class="long info" id="search-input" placeholder="输入要翻译的中文术语">
                  <button onclick="translateWord()">搜索</button>
+=======
+                 <input type="text" class="long info">
+                 <button>搜索</button>
+>>>>>>> d40d07b684abd72cc1a9c83c4a219f2e9655896b
              </div>
              <div><button class="long info" id="dictionary-search">对应翻译</button></div>
              <div><button type="submit" class="mid tech">保存到术语库</button></div>&ensp;
@@ -197,7 +234,6 @@
           </div>
         </div>
       </div>
-
 {% if source_text_list and target_text_list %}
         <script>
                 // 原文句子数组

@@ -71,22 +71,21 @@ def translate(request):
 
 
 def ajax_match_strings(request):
-    string_similarity = {}
     if request.method == 'POST':
         string1 = request.POST.get('string1')
-        print(string1)
-    #     source_data = TextTranslationPart.objects.values_list('source_text', flat=True)
-    #     for value in source_data:
-    #         string2 = value
-    #         similarity_score = fuzz.ratio(string1, string2)
-    #         string_similarity = {
-    #             'string': string2,
-    #             'similarity_score': similarity_score
-    #         }
-    #     string_similarity_list = list(string_similarity)
-    #     # 对列表进行排序,根据 'similarity_score' 字段从大到小排序
-    #     string_similarity_list.sort(key=lambda x: x['similarity_score'], reverse=True)
-    #     # 取出前五个键值对
-    #     top_5_strings = string_similarity[:5]
-    #     return JsonResponse({'top_5_strings': top_5_strings})
-    # return JsonResponse({'error': 'Invalid request'})
+        source_data = TextTranslationPart.objects.values_list('source_text', flat=True)
+        string_similarity_list = []
+        for value in source_data:
+            string2 = value
+            similarity_score = fuzz.ratio(string1, string2)
+            string_similarity = {
+                'string': string2,
+                'similarity_score': similarity_score
+            }
+            string_similarity_list.append(string_similarity)
+        # 对列表进行排序,根据 'similarity_score' 字段从大到小排序
+        string_similarity_list.sort(key=lambda x: x['similarity_score'], reverse=True)
+        # 取出前五个键值对
+        top_5_strings = string_similarity_list[:5]
+        return JsonResponse({'top_5_strings': top_5_strings})
+    return JsonResponse({'error': 'Invalid request'})
